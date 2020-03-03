@@ -1,0 +1,176 @@
+
+
+
+
+chapter 0 OVERVIEW  ToMobile Communication []
+
+
+
+
+
+
+
+
+
+
+chapter 1 Mobile Communication  ToMobile Hardware ['Mobile Communication The mobile communication in this case, refers to the infrastructure put in place to ensure that seamless and reliable communication goes on. These would include devices such as protocols, services, bandwidth, and portals necessary to facilitate and support the stated services. The data format is also defined at this stage. This ensures that there is no collision with other existing systems which offer the same service.   Since the media is unguided/unbounded, the overlaying infrastructure is basically radio wave-oriented. That is, the signals are carried over the air to intended devices that are capable of receiving and sending similar kinds of signals. Mobile Hardware ']
+
+
+
+
+
+
+
+
+
+
+chapter 2 Mobile Hardware  ToMobile Software ["Mobile Hardware Mobile hardware includes mobile devices or device components that receive or access the service of mobility. They would range from portable laptops, smartphones, tablet PCs, Personal Digital Assistants. 1.  OVERVIEW \x0cMobile Computing 2     These devices will have a receptor medium that is  capable of sensing and receiving signals. These devices are configured to operate in full-duplex, whereby they are capable of sending and receiving signals at the same time. They don't have to wait until one device has finished communicating for the other device to initiate communications. Above mentioned devices use an existing and established network to operate on. In most cases, it would be a wireless network. Mobile Software "]
+
+
+
+
+
+
+
+
+
+
+chapter 3 Mobile Software  ToMOBILE COMPUTING  EVOLUTION ["Mobile Software Mobile software is the actual program that runs on the mobile hardware. It deals with the characteristics and requirements of mobile applications. This is the engine of the mobile device. In other terms, it is the operating system of the appliance. It is the essential component that operates the mobile device.  Since portability is the main factor, this type of computing ensures that users are not tied or pinned to a single physical location, but are able to operate from anywhere. It incorporates all aspects of wireless communications. \x0cMobile Computing 3   In today's computing world, different technologies have emerged. These have grown to support the existing computer networks all over the world. With mobile computing, we find that the need to be confined within one physical location has been eradicated. We hear of terms such as telecommuting, which  is being able to work from home or the field but at the same time accessing resources as if one is in the office.   The advent of portable computers and laptops, Personal Digital Assistants (PDA), PC tablets and smartphones, has in turn made mobile computing very convenient. The portability of these devices ensure and enable the users to access all services as if they were in the internal network of their company. For example, the use of Tablet PC and iPads. This new technology enables the users to update documents, surf the internet, send and receive e-mail, stream live video files, take photographs and also support video and voice conferencing. The constant and ever increasing demand for superior and robust smart devices has been a catalyst for market share. Each manufacturer is trying to carve a niche for himself in the market. These devices are invented and innovated to provide state-of-the-art applications and services. For instance, different manufacturers of cellular phones have come up with unique smartphones that are capable of performing the same task as computers and at the same processing speed. The market share for different competitors is constantly 2.  MOBILE COMPUTING  EVOLUTION "]
+
+
+
+
+
+
+
+
+
+
+chapter 4 MOBILE COMPUTING  EVOLUTION  ToCLASSIFICATION ["MOBILE COMPUTING  EVOLUTION \x0cMobile Computing 4   being fought for. For example, the manufacturers of Apple's iPhone OS, Google's Android' Microsoft Windows Mobile, Research In Motion's Blackberry OS, are constantly competing to offer better products with each release.   The need for better, portable, affordable, and robust technology has made these vendors to constantly be innovative. Market figure and statistics show an ever growing need to purchase and use such devices for either professional or personal use. It is in this light that services to suit long-term implementation are developed or innovated. It has also pushed other industry vendors to adopt services that will provide better services. For example, cellular service providers are forced to improve and be innovative to capture more subscribers. This can be in terms of superior services such as high speed internet and data access, voice and video service etc. Hence the adoption of different generations of networks like of 2G, 2.5G, 3G, 4G network services. The essence of mobile computing is to be able to work from any location. The use of iPads, tablets, smartphones, and notebooks, have pushed the demand for these devices. Modern day workers have such devices that enable them to carry out their work from the confines of their own location. These devices are configured to access and store large amounts of vital data. Executive and top management can take decisions based on ready information without going to the office. For example, sales reports and market forecasts can be accessed through these devices or a meeting can take place via video or audio conferencing through these devices. With such features being high in demand, manufacturers are constantly coming up with applications geared to support different services in terms of mobile computing. \x0cMobile Computing 5   Mobile computing is not only limited to mobile phones, but there are various gadgets available in the market that are built on a platform to support mobile computing. They are usually classified in the following categories: Personal Digital Assistant (PDA) The main purpose of this device is to act as an electronic organizer or day planner that is portable, easy to use and capable of sharing information with your computer systems. PDA is an extension of the PC, not a replacement. These systems are capable of sharing information with a computer system through a process or service known as synchronization. Both devices will access each other to check for changes or updates in the individual devices. The use of infrared and Bluetooth connections enables these devices to always be synchronized.  With PDA devices, a user can browser the internet, listen to audio clips, watch video clips, edit and modify office documents, and many more services. The device has a stylus and a touch sensitive screen for input and output purposes. Smartphones This kind of phone combines the features of a PDA with that of a mobile phone or camera phone. It has a superior edge over other kinds of mobile phones. Smartphones have the capability to run multiple programs concurrently. These phones include high-resolution touch screens, web browsers that can access and properly display standard web pages rather than just mobile-optimized sites, and high-speed data access via Wi-Fi and high speed cellular broadband. The most common mobile Operating Systems (OS) used by modern smartphones include Google's Android, Apple's iOS, Nokia's Symbian, RIM's BlackBerry OS, Samsung's Bada, Microsoft's Windows Phone, and embedded Linux distributions such as Maemo and MeeGo. Such operating systems can be installed on different phone models, and typically each device can receive multiple OS software updates over its lifetime. 3.  CLASSIFICATION "]
+
+
+
+
+
+
+
+
+
+
+chapter 5 CLASSIFICATION  ToPersonal Digital Assistant (PDA) []
+
+
+
+
+
+
+
+
+
+
+chapter 6 Personal Digital Assistant (PDA)  ToSmartphones []
+
+
+
+
+
+
+
+
+
+
+chapter 7 Smartphones  ToTablet PC and iPads ["Smartphones This kind of phone combines the features of a PDA with that of a mobile phone or camera phone. It has a superior edge over other kinds of mobile phones. Smartphones have the capability to run multiple programs concurrently. These phones include high-resolution touch screens, web browsers that can access and properly display standard web pages rather than just mobile-optimized sites, and high-speed data access via Wi-Fi and high speed cellular broadband. The most common mobile Operating Systems (OS) used by modern smartphones include Google's Android, Apple's iOS, Nokia's Symbian, RIM's BlackBerry OS, Samsung's Bada, Microsoft's Windows Phone, and embedded Linux distributions such as Maemo and MeeGo. Such operating systems can be installed on different phone models, and typically each device can receive multiple OS software updates over its lifetime. 3.  CLASSIFICATION \x0cMobile Computing 6    Tablet PC and iPads "]
+
+
+
+
+
+
+
+
+
+
+chapter 8 Tablet PC and iPads  ToMAJOR ADVANTAGES ["Tablet PC and iPads This mobile device is larger than a mobile phone or a PDA and integrates into a touch screen and is operated using touch sensitive motions on the screen. They are often controlled by a pen or by the touch of a finger. They are usually in slate form and are light in weight. Examples would include iPads, Galaxy Tabs, Blackberry Playbooks etc.  They offer the same functionality as portable computers. They support mobile computing in a far superior way and have enormous processing horsepower. Users can edit and modify document files, access high speed internet, stream video and audio data, receive and send e-mails, attend/give lectures and presentations among its very many other functions. They have excellent screen resolution and clarity. \x0cMobile Computing 7   Mobile computing has changed the complete landscape of our day-to-day life. Following are the major advantages of Mobile Computing  Location Flexibility This has enabled users to work from anywhere as long as there is a connection established. A user can work without being in a fixed position. Their mobility ensures that they are able to carry out numerous tasks at the same time and perform their stated jobs. Saves Time The time consumed or wasted while travelling from different locations or to the office and back, has been slashed. One can now access all the important documents and files over a secure channel or portal and work as if they were on their computer. It has enhanced telecommuting in many companies. It has  also reduced unnecessary incurred expenses. Enhanced Productivity Users can work efficiently and effectively from whichever location they find comfortable. This in turn enhances their productivity level. Ease of Research Research has been made easier, since users earlier were required to go to the field and search for facts and feed them back into the system. It has also made it easier for field officers and researchers to collect and feed data from wherever they are without making unnecessary trips to and from the office to the field. Entertainment Video and audio recordings can now be streamed on-the-go using mobile computing. It's easy to access a wide variety of movies, educational and informative material. With the improvement and availability of high speed data connections at considerable cost, one is able to get all the entertainment they want as they browse the internet for streamed data. One is able to watch news, movies, and documentaries among other entertainment offers over the internet. This was not possible before mobile computing dawned on the computing world. Streamlining of Business Processes Business processes are now easily available through secured connections. Looking into security issues, adequate measures have been put in place to ensure authentication and authorization of the user accessing the services. Some business functions can be run over secure links and sharing of information between business partners can also take place.  Meetings, seminars and other informative services can be conducted using  video and voice conferencing. Travel time and expenditure is also considerably reduced. 4.  MAJOR ADVANTAGES "]
+
+
+
+
+
+
+
+
+
+
+chapter 9 MAJOR ADVANTAGES  ToSECURITY ISSUES ["MAJOR ADVANTAGES \x0cMobile Computing 8   Mobile computing has its fair share of security concerns as any other technology. Due to its nomadic nature, it's not easy to monitor the proper usage. Users might have different intentions on how to utilize this privilege. Improper and unethical practices such as hacking, industrial espionage, pirating, online fraud and malicious destruction are some but few of the problems experienced by mobile computing.  Another big problem plaguing mobile computing is credential verification.  As other users share username and passwords, it poses as a major threat to security. This being a very sensitive issue, most companies are very reluctant to implement mobile computing to the dangers of misrepresentation. The problem of identity theft is very difficult to contain or eradicate. Issues with unauthorized access to data and information by hackers, is also an enormous problem. Outsiders gain access to steal vital data from companies, which is  a major hindrance in rolling out mobile computing services. No company wants to lay open their secrets to hackers and other intruders, who will in turn sell the valuable information to their competitors. It's also important to take the necessary precautions to minimize these threats from taking place. Some of those measures include   Hiring qualified personnel  Installing security hardware and software  Educating the users on proper mobile computing ethics  Auditing and developing sound, effective policies to govern mobile computing  Enforcing proper access rights and permissions 5.  SECURITY ISSUES "]
+
+
+
+
+
+
+
+
+
+
+chapter 10 SECURITY ISSUES  ToCURRENT  TRENDS ["SECURITY ISSUES \x0cMobile Computing 9     These are just but a few ways to help deter possible threats to any company planning to offer mobile computing. Since information is vital, all possible measures should be evaluated and implemented for safeguard purposes. In the absence of such measures, it's possible for exploits and other unknown threats to infiltrate and cause irrefutable harm. These may be in terms of reputation or financial penalties. In such cases, it's very easy to be misused in different unethical practices. If these factors arent properly worked on, it might be an avenue for constant threat. Various threats still exist in implementing this kind of technology. \x0cMobile Computing 10   This chapter lists down the current mobile technologies starting from 3G technologies which is the hottest mobile technology available in the market. 3G 3G or third generation mobile telecommunications is a generation of standards for mobile phones and mobile telecommunication services fulfilling the International Mobile Telecommunications-2000 (IMT-2000) specifications by the International Telecommunication Union. Application services include wide-area wireless voice telephone, mobile Internet access, video calls and mobile TV, all in a mobile environment. Global Positioning System (GPS) The Global Positioning System (GPS) is a space-based satellite navigation system that provides location and time information in all weather, anywhere on or near the Earth, where there is an unobstructed line of sight to four or more GPS satellites. The GPS program provides critical capabilities to military, civil and commercial users around the world. In addition, GPS is the backbone for modernizing the global air traffic system, weather, and location services. Long Term Evolution (LTE) LTE is a standard for wireless communication of high-speed data for mobile phones and data terminals. It is based on the GSM/EDGE and UMTS/HSPA network technologies, increasing the capacity and speed using new modulation techniques. It is related with the implementation of fourth Generation (4G) technology. WiMAX WiMAX (Worldwide Interoperability for Microwave Access) is a wireless communications standard designed to provide 30 to 40 megabit-per-second data rates, with the latest update providing up to 1 Gbit/s for fixed stations. It is a part of a fourth generation or 4G wireless-communication technology. WiMAX far surpasses the 30-metre wireless range of a conventional Wi-Fi Local Area Network (LAN), offering a metropolitan area network with a signal radius of about 50 km. WiMAX offers data transfer rates that can be superior to conventional cable-modem and DSL connections, however, the bandwidth must be shared among multiple users and thus yields lower speed in practice. Near Field Communication Near Field Communication (NFC) is a set of standards for smartphones and similar devices to establish radio communication with each other by touching them together or bringing them into close proximity, usually no more than a few centimeters. Present and anticipated applications include contactless transactions, data exchange, and simplified setup of more 6.  CURRENT  TRENDS "]
+
+
+
+
+
+
+
+
+
+
+chapter 11 CURRENT  TRENDS  To3G []
+
+
+
+
+
+
+
+
+
+
+chapter 12 3G  ToGlobal Positioning System (GPS) []
+
+
+
+
+
+
+
+
+
+
+chapter 13 Global Positioning System (GPS)  ToLong Term Evolution (LTE) []
+
+
+
+
+
+
+
+
+
+
+chapter 14 Long Term Evolution (LTE)  ToWiMAX []
+
+
+
+
+
+
+
+
+
+
+chapter 15 WiMAX  ToNear Field Communication ['WiMAX WiMAX (Worldwide Interoperability for Microwave Access) is a wireless communications standard designed to provide 30 to 40 megabit-per-second data rates, with the latest update providing up to 1 Gbit/s for fixed stations. It is a part of a fourth generation or 4G wireless-communication technology. WiMAX far surpasses the 30-metre wireless range of a conventional Wi-Fi Local Area Network (LAN), offering a metropolitan area network with a signal radius of about 50 km. WiMAX offers data transfer rates that can be superior to conventional cable-modem and DSL connections, however, the bandwidth must be shared among multiple users and thus yields lower speed in practice. Near Field Communication Near Field Communication ']
+
+
+
+
+
+
