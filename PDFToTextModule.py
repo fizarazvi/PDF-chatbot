@@ -38,13 +38,6 @@ class PDFToText():
         for page in self.extract_text_by_page():
             self.out_ptr.write(page)
 
-
-def generate_titles(text):
-    regex_titles = re.findall("[\w\s&\(\)]+\s\.+\s*\d+", text)
-    #for i in regex_titles:
-    #    self.chunks.append(Chunks().set_title(self, i.split(".")[0].split(" ",1)[1]))
-
-
 class ExtractChunks():
     def __init__(self, text_path):
         self.chunks = []
@@ -57,8 +50,7 @@ class ExtractChunks():
         self.generate_titles()
         self.generate_para()
         self.generate_keywords()
-        self.store_data()
-        self.load_data()
+
 
     def generate_titles(self):
         table_of_content =  re.findall("[\w\s&\(\)]+\s\.+\s*\d+", self.text)
