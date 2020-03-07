@@ -9,7 +9,16 @@ from pdfminer.pdfpage import PDFPage
 
 from rake_nltk import Rake
 
+# @Fiza - Separate each class into other files for better readability. Before you commit, your code put some extra lines as brief
+# documentation of class the way I have put here. Please use camelCase for naming.  
 
+
+"""
+PDFToText
+This class provides an facility to read PDF page by page and writes them into a text file
+    - extract_text_by_page : Creates a comprehensive text of PDF
+    - extract_text :  writes the text to .txt handle
+"""
 class PDFToText():
     def __init__(self, pdf_path):
         self.pdf_path = 'SamplePdf/' + pdf_path
@@ -38,6 +47,11 @@ class PDFToText():
         for page in self.extract_text_by_page():
             self.out_ptr.write(page)
 
+"""
+Please provide your brief explanation here.
+Remove commented code
+"""
+            
 class ExtractChunks():
     def __init__(self, text_path):
         self.chunks = []
@@ -88,15 +102,22 @@ class ExtractChunks():
         '''
 
 
+"""
+Add yout comments here for the class.
+Try practicing making class attributes private to avoid external access. 
+"""
 
 class Chunks():
     def __init__(self):
         self.title = ""
         self.para = ""
         self.keywords= []
+        
     def set_title(self, title):
         self.title = title
+    
     def set_para(self, para):
         self.para = para
+    
     def set_keywords(self, keywords):
         self.keywords = keywords
