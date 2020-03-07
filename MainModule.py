@@ -1,20 +1,34 @@
 import argparse
 
+from ExtractChunksModule import ExtractChunks
 from PDFToTextModule import PDFToText
 
-from PDFToTextModule import ExtractChunks
 
-# @Fiza - Kindly convert this utility into class PDFParser
+"""
+    PDFParser
+    This class provides a facility of parsing pdf to chunks
+"""
+class PDFParser():
+    def __init__(self):
+        self.__pdf_path = ''
+        self.__text_path = ''
 
+    def parsePdf(self):
+        parser = argparse.ArgumentParser(description="Enter document filename")
+        parser.add_argument('doc', help='document filename')
+        args = parser.parse_args()
+        self.__pdf_path = 'SamplePdf/'+ args.doc  # input document filename
+        pdf_to_text = PDFToText(self.__pdf_path)
+        pdf_to_text.extractText()
+        self.__text_path = pdf_to_text._PDFToText__text_path
+        extract_chunk = ExtractChunks(self.__text_path)
+        extract_chunk.createChunks()
+
+"""
+This class ultimately provide a list of chunks from the pdf file by parsing it to text file using PDFToText and then ExtractChunks
+"""
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Enter document filename")
-    parser.add_argument('doc', help='document filename')
-    args = parser.parse_args()
-    f_name = args.doc  # input document filename
-    print(f_name)
-    pdf_to_text = PDFToText(f_name)
-    pdf_to_text.extract_text()
-    extract_chunk = ExtractChunks(pdf_to_text.text_path)
-    extract_chunk.create_chunks()
+    pdfParser = PDFParser()
+    pdfParser.parsePdf()
 
