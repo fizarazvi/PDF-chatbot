@@ -4,6 +4,9 @@ from PDFToTextModule import PDFToText
 
 from PDFToTextModule import ExtractChunks
 
+# @Fiza - Kindly convert this utility into class PDFParser
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Enter document filename")
     parser.add_argument('doc', help='document filename')
