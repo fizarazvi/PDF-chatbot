@@ -9,7 +9,7 @@ def intro():
 
 
 @app.route('/pdfupload')
-def index():
+def file_upload():
     return render_template('uploadForm.html')
 
 
