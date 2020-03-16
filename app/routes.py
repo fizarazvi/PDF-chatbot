@@ -18,7 +18,7 @@ def handle_file_upload():
     if 'pdf' in request.files:
         pdf = request.files['pdf']
         if pdf.filename != '':
-            pdf.save(os.path.join('/Users/riddhipathak/PycharmProjects/app/uploads', pdf.filename))
+            pdf.save(os.path.join('/app/uploads', pdf.filename))
     return redirect(url_for('index'))
 
 
