@@ -401,6 +401,10 @@ class UpPdfComponent {
     }
     //when submit button clicked call the upload service
     onSubmit() {
+        if (this.fileData == null) {
+            alert("select a file");
+            return;
+        }
         if (this.fileData.name.length > 4 && this.fileData.name.substr(-4, 4) != '.pdf') {
             alert("upload only pdf");
             return;

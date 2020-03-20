@@ -18,7 +18,8 @@ def handleFileUpload():
     if 'pdf' in request.files:
         pdf = request.files['pdf']
         if pdf.filename != '':
-            path_ = os.path.abspath(__file__ + "/../../../")
+            #for absolute path
+            path_ = os.path.abspath(__file__ + "/../..")
             pdf.save(os.path.join(path_, 'SamplePdf', pdf.filename))
             logging.info("saved pdf to"+os.path.join(path_, 'SamplePdf'))
     render_template('index.html')
