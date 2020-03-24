@@ -54,7 +54,9 @@ export class ChatbotComponent implements OnInit {
       return;
     }
     this.addUserMessage();
-    this.uploadService.askQuestion(this.question)
+    const formData = new FormData();
+    formData.append('text', this.question);
+    this.uploadService.askQuestion(formData)
                        .subscribe(res => {
                           this.addBotMessage(res.data.answer);
                        });
