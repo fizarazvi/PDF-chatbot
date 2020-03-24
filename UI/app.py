@@ -27,6 +27,7 @@ def handleFileUpload():
 
 @app.route("/questions", methods=['POST'])
 def askQuestion():
+    logging.warning(request.form['text'])
     logging.warning("in askQuestion")
     return jsonify({'data': {'answer': 'I hope it works'}})
 

@@ -24,9 +24,9 @@ export class UploadService {
       });
   }
 
-  public askQuestion(text) {
+  public askQuestion(formData) {
     console.log("askQuestion");
-    return this.httpClient.post<any>(this.SERVER_URL+'questions', text, {
+    return this.httpClient.post<any>(this.SERVER_URL+'questions', formData, {
       });
   }
 
