@@ -12,7 +12,7 @@ Comments from Ratan
 3. @Fiza - Please create a User Interface for uploading files and Chat interface
     - Deliver basic UI 
     - Collaborate with Shubham to give him an independent component
-4. @Ravi - Create a QueryProcessor.py class and keep it in Engines folder.
+4. @Ravi - Create a QueryProcessor.py class and keep it in Engines folder. **(Sample Done)**
 5. @Shubham - Create bash scripts for keeping server up / killin it / restarting it.
     - Shubham to deliver the bash scripts start.sh, kill.sh, restart.sh
 6. @Ratan - Creation of DB Layer, Singleton and Factory classes **(Done)**
