@@ -13,12 +13,11 @@ import { map } from  'rxjs/operators';
 })
 export class UploadService {
 
-  SERVER_URL: string = "http://127.0.0.1:5000/";
 	constructor(private httpClient: HttpClient) { }
 
   public upload(formData) {
 
-    return this.httpClient.post<any>(this.SERVER_URL+'handleUpload', formData, {
+    return this.httpClient.post<any>('/handleUpload', formData, {
         reportProgress: true,
         observe: 'events'
       });
@@ -26,7 +25,7 @@ export class UploadService {
 
   public askQuestion(formData) {
     console.log("askQuestion");
-    return this.httpClient.post<any>(this.SERVER_URL+'questions', formData, {
+    return this.httpClient.post<any>('/questions', formData, {
       });
   }
 
