@@ -1,5 +1,5 @@
 from app import app
-from flask import Flask,request, render_template, url_for, redirect
+from flask import Flask,request, render_template, url_for, redirect, flash
 import os
 
 
@@ -8,18 +8,29 @@ def intro():
     return render_template('introPage.html')
 
 
-@app.route('/pdfupload')
+@app.route('/pdfupload', methods = ['GET','POST'])
 def file_upload():
-    return render_template('uploadForm.html')
+    if request.method == 'POST':
+        """
+        You can write the logic for post here itself.
+        """
+        
+        pass
+    else:    
+        return render_template('uploadForm.html')
 
 
 @app.route("/handleUpload", methods=['POST'])
 def handle_file_upload():
-    if 'pdf' in request.files:
-        pdf = request.files['pdf']
-        if pdf.filename != '':
-            pdf.save(os.path.join('/app/uploads', pdf.filename))
-    return redirect(url_for('index'))
+    try:
+        if 'pdf' in request.files:
+            pdf = request.files['pdf']        
+            uploadDirectory = os.path.join(os.getcwd(),"uploads")        
+            if pdf.filename != '':
+                pdf.save(os.path.join(uploadDirectory, pdf.filename))
+            return redirect('/')
+    except:
+        return redirect('/pdfupload')
 
 
 @app.route('/question')
