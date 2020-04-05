@@ -9,23 +9,26 @@ from pymongo import MongoClient
 import logging
 from datetime import datetime
 import pandas as pd
-from Database import Database
-from ConfigParser.ConfigParser import ConfigParser
+from Database.Database import Database
+from ConfigParser.ConfigParser import ConfigurationParser
 
 
-class Mongo(object):
+class Mongo(Database):
     
     def __init__(self):
         
         # Instating Logger
         logging.basicConfig(filename="logs/database.log", filemode='w', level=logging.DEBUG)    
+
         # Database server configurations
-        self.__config = ConfigParser().read("config.ini")
         self.__host = "localhost"
         self.__port = 27017
         self.__maxDelay = 10
-        self.__connect()        
+        self.__connect()
     
+
+
+
     """
     Database server connection code
     """
@@ -53,6 +56,8 @@ class Mongo(object):
             raise ValueError("Error finding / creating database {}".format(db))
     
     
+
+
     """
     Returns list of all available DBs
     """
@@ -60,6 +65,9 @@ class Mongo(object):
         return self.__client.list_database_names()
     
     
+
+
+
     """
     Get a collection
     """
@@ -73,6 +81,10 @@ class Mongo(object):
             raise ValueError("Error finding / creating collection {}".format(collectionName))
        
     
+
+
+
+
     """
     Returns list of all collections
     """
@@ -88,6 +100,10 @@ class Mongo(object):
         return collections
     
     
+    
+
+
+
     """
     Insert a row in a table
     """
@@ -108,6 +124,8 @@ class Mongo(object):
             raise TypeError("Data type not supported for insertion. Expected list of dict/ dict, Found {}".format(str(type(data))))
             
     
+    
+
     """
     Get data of a table
     """

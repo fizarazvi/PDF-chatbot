@@ -5,7 +5,6 @@ Created on Fri Feb 21 21:46:23 2020
 @author: Ratan Singh
 """
 
-from Factory.DatabaseFactory import DatabaseFactory
 
 class Singleton(type):
     
