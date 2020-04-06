@@ -24,6 +24,14 @@ Comments after Review - Apr 6th, 2020
 
 1. @ Ravi - ChunksModule.py and other files should be moved to Processors Folder. Make sure your inherit Abstract class Processor.py. I have added a basic flow in QueryProcessor class. File upload is working fine now, so you can write a dummy code to fetch files from a folder called **uploads** and process as per your wish.
 2. @ Riddhi - File Upload issue has been fixed. Server works fine now. Please follow the steps mentioned in ReadMe.md of Server branch to integrate your code to the master repo.
+
+-Engines
+-RestServer
+    - Routes.py
+-uploads
+    -ABC.PDF
+-app.py 
+
 3. @ Shubham - I dont see any commits from your end. May I know your contribution ?
 4. @ Fiza - Is it possible for your end to list down the API that you have hooked up with UI. Will be really appreciable if we could see the UI as I am completely out of sync.
 
