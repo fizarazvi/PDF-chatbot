@@ -33,8 +33,11 @@ Comments after Review - Apr 6th, 2020
 -app.py 
 
 3. @ Shubham - I dont see any commits from your end. May I know your contribution ?
-4. @ Fiza - Is it possible for your end to list down the API that you have hooked up with UI. Will be really appreciable if we could see the UI as I am completely out of sync.
+Create Download BAT Script to download Glove and store it in ThirdPartyData Folder.
 
+
+4. @ Fiza - Is it possible for your end to list down the API that you have hooked up with UI. Will be really appreciable if we could see the UI as I am completely out of sync.
+5. @Ratan - Create a basic module for Embeddings. Add Glove as Example.
 To All : 
 Let's set Elastic Server on our systems post tomorrow's call and start working on a class to use the functionality.
 Aim for this week to deploy this code on server. We will implement further the internal working once this is deployed.
