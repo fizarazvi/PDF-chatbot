@@ -23,10 +23,11 @@ def handleFileUpload():
             pdf.save(os.path.join(path_, 'SamplePdf', pdf.filename))
             logging.info("saved pdf to"+os.path.join(path_, 'SamplePdf'))
     render_template('index.html')
-    return jsonify({'data': {'status': 'uploaded..'}})
+    return jsonify({'data': {'status': 'uploaded'}})
 
 @app.route("/questions", methods=['POST'])
 def askQuestion():
+    logging.warning(request)
     logging.warning(request.form['text'])
     logging.warning("in askQuestion")
     return jsonify({'data': {'answer': 'I hope it works'}})

@@ -16,11 +16,13 @@ import { of } from 'rxjs';
 export class UpPdfComponent implements OnInit {
   fileData: File = null;
   uploadedFilePath: string = null;
+  fileName = "";
   constructor(private uploadService: UploadService) { }
 
   // get input file
   fileProgress(fileInput: any) {
       this.fileData = <File>fileInput.target.files[0];
+      this.fileName = this.fileData.name;
   }
 
   //when submit button clicked call the upload service
@@ -39,6 +41,7 @@ export class UpPdfComponent implements OnInit {
 
       this.uploadService.upload(formData).pipe(
       map(event => {
+        console.log("event");
         console.log(event);
         switch (event.type) {
           case HttpEventType.UploadProgress:
@@ -53,10 +56,14 @@ export class UpPdfComponent implements OnInit {
         return of(`${this.fileData.name} upload failed.`);
       })).subscribe((event: any) => {
         if (typeof (event) === 'object') {
+          if(event.body.data.status=="uploaded")
+            alert("File Uploaded Successfully!");
           console.log(event.body);
         }
+        this.fileName="";
       });
   }
+
   ngOnInit(): void {
   }
 

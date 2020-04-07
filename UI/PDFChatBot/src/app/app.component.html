@@ -1,2 +1,6 @@
-<app-up-pdf></app-up-pdf>
-<app-chatbot></app-chatbot>
+<app-up-pdf *ngIf="flagComponent=='UploadPDF'"></app-up-pdf>
+
+<app-chatbot *ngIf="flagComponent=='ChatBot'"></app-chatbot>
+<div *ngIf="flagComponent=='UploadPDF'" class="askPDFButton">
+  <button (click)="toggleComponent()">{{componentToDisplay}}</button>
+</div>
