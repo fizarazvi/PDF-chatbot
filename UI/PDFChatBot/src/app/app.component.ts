@@ -5,7 +5,6 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  styles: ['html { height: 100%; }','body { height: 100%; margin:0px;}']
 })
 export class AppComponent {
   title = 'PDF-chatbot';

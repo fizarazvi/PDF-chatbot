@@ -25,10 +25,10 @@
           </div>
         </div>
       </div>
+
     <div class="text-send">
-      <input type="text" style="width:-webkit-fill-available" placeholder="Write your message here..." [(ngModel)]="question" (keyup.enter)="handleUserMessage()" />
-      <span class="input-group-btn">
-        <button style="width:100%; background:#d5e3ef;" (click)="handleUserMessage()">Send</button>
-      </span>
+      <input type="text" placeholder="Write your message here..." [(ngModel)]="question" (keyup.enter)="handleUserMessage()" />
+      <button  (click)="handleUserMessage()">Send</button>
     </div>
+
 </div>
