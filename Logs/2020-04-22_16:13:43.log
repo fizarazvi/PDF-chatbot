@@ -1,0 +1,7 @@
+2020-04-22 16:13:43,192 - DEBUG - Server started
+2020-04-22 16:13:43,196 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2020-04-22 16:13:51,878 - INFO - rendering index
+2020-04-22 16:13:51,883 - INFO - 127.0.0.1 - - [22/Apr/2020 16:13:51] "GET / HTTP/1.1" 200 -
+2020-04-22 16:13:56,721 - WARNING - hey
+2020-04-22 16:13:56,721 - WARNING - in askQuestion
+2020-04-22 16:13:56,721 - INFO - 127.0.0.1 - - [22/Apr/2020 16:13:56] "POST /questions HTTP/1.1" 200 -
