@@ -8,7 +8,7 @@ Comments from Ratan
     - Ratan to add a basic flow and show storing query in DB
 2. @Riddhi - Please create a file called server.py / app.py and create Flask Server APIs
     - Adding uploads folder in the project
-    - Render the basic interface 
+    - Render the basic interface **(Done)**
 3. @Fiza - Please create a User Interface for uploading files and Chat interface
     - Deliver basic UI 
     - Collaborate with Shubham to give him an independent component
@@ -31,7 +31,7 @@ Comments after Review - Apr 6th, 2020
 -uploads
     -ABC.PDF
 -app.py 
-
+(i have uploaded the app.py and the restServer package)
 3. @ Shubham - I dont see any commits from your end. May I know your contribution ?
 Create Download BAT Script to download Glove and store it in ThirdPartyData Folder.
 
