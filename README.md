@@ -9,7 +9,7 @@ Comments from Ratan
 2. @Riddhi - Please create a file called server.py / app.py and create Flask Server APIs
     - Adding uploads folder in the project
     - Render the basic interface **(Done)**
-3. @Fiza - Please create a User Interface for uploading files and Chat interface
+3. @Fiza - Please create a User Interface for uploading files and Chat interface **(Done)** 
     - Deliver basic UI 
     - Collaborate with Shubham to give him an independent component
 4. @Ravi - Create a QueryProcessor.py class and keep it in Engines folder. **(Sample Done)**
@@ -37,6 +37,11 @@ Create Download BAT Script to download Glove and store it in ThirdPartyData Fold
 
 
 4. @ Fiza - Is it possible for your end to list down the API that you have hooked up with UI. Will be really appreciable if we could see the UI as I am completely out of sync.
+    
+    1. '/handleUpload': for uploading pdf
+    
+    2. '/questions':  to send question from ui to backend
+
 5. @Ratan - Create a basic module for Embeddings. Add Glove as Example.
 To All : 
 Let's set Elastic Server on our systems post tomorrow's call and start working on a class to use the functionality.
