@@ -31,7 +31,8 @@ Comments after Review - Apr 6th, 2020
 -uploads
     -ABC.PDF
 -app.py 
-(i have uploaded the app.py and the restServer package)
+**(i have uploaded the app.py and the restServer package)**
+URL - https://smartpdfassistant.herokuapp.com
 3. @ Shubham - I dont see any commits from your end. May I know your contribution ?
 Create Download BAT Script to download Glove and store it in ThirdPartyData Folder.
 
