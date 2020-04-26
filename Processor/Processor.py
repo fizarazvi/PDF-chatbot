@@ -18,3 +18,9 @@ class Processor(ABC):
     """
     def predict(self, testData):
         pass
+
+    def getQuery(self):
+        pass
+
+    def QuesDataToElasticSearch(self):
+        pass
