@@ -1,0 +1,34 @@
+<div class="chatbot-container"  >
+    <div class="chatbot-title">
+          <h3 class="panel-title">ChatBot</h3>
+      </div>
+    <div class="scrollbar_try" #scrollframe>
+
+        <div class="panel-body msg_container_base" *ngFor="let msg of messages" #msg>
+          <div class="row msg_container base_sent" *ngIf="!msg.reply">
+            <div class="col-md-10 col-xs-10">
+              <div class="messages msg_sent">
+                <p>{{msg.text}}</p>
+                <time datetime="2009-11-13T20:00">• {{msg.date | date:'shortTime' }}</time>
+              </div>
+            </div>
+
+          </div>
+          <div class="row msg_container base_receive" *ngIf="msg.reply">
+
+            <div class="col-md-10 col-xs-10">
+              <div class="messages msg_receive">
+                <p>{{msg.text }}</p>
+                <time datetime="2009-11-13T20:00">• {{msg.date | date:'shortTime' }}</time>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="text-send">
+      <input type="text" placeholder="Write your message here..." [(ngModel)]="question" (keyup.enter)="handleUserMessage()" />
+      <button  (click)="handleUserMessage()">Send</button>
+    </div>
+
+</div>
