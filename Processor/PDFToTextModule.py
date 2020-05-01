@@ -14,7 +14,7 @@ This class provides an facility to read PDF page by page and writes them into a 
 class PDFToText():
     def __init__(self, pdf_path):
         self.__pdf_path = pdf_path
-        self.__text_path = 'SampleText/' + pdf_path.rsplit('/',1)[-1][:-4] + '-text.txt'
+        self.__text_path = '../SampleText/' + pdf_path.rsplit('/',1)[-1][:-4] + '-text.txt'
         self.__out_ptr = open(self.__text_path, "w")
 
     def extractTextByPage(self):

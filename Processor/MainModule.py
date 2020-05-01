@@ -17,7 +17,7 @@ class PDFParser():
         parser = argparse.ArgumentParser(description="Enter document filename")
         parser.add_argument('doc', help='document filename')
         args = parser.parse_args()
-        self.__pdf_path = 'SamplePdf/'+ args.doc  # input document filename
+        self.__pdf_path = '../SamplePdf/'+ args.doc  # input document filename
         pdf_to_text = PDFToText(self.__pdf_path)
         pdf_to_text.extractText()
         self.__text_path = pdf_to_text._PDFToText__text_path
