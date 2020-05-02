@@ -21,7 +21,7 @@ Driver class for processing the query and data, delivering final answer to the U
 """
 
 
-class QueryProcessor(Engine):
+class QueryProcessor():
 
     # Never instatiate a class with some object that will chnage again and again.
     # Hence removing parameter query from here.
