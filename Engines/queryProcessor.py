@@ -9,8 +9,8 @@ import logging
 from datetime import datetime
 
 # from Factory import ??
-from Engines import Engine
-#import engineio
+#from Engines import Engine
+import engineio
 from rake_nltk import Rake
 from nltk.corpus import stopwords
 from Database import Mongo
@@ -36,7 +36,7 @@ class QueryProcessor():
 
     # Will take the query and return the output
     def predict(self, query):
-        query = "This is a sample query"
+        #query = "This is a sample query"
 
         # Logging the query
         logging.info("[{}] : Received Query : {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), query))
@@ -45,6 +45,7 @@ class QueryProcessor():
         Fill in your logic to procss the query here.
         Curently this will return the same question as response from here.
         """
+        print("query : ", query)
 
         # Applying RAKE on query.
         r = Rake()
@@ -52,15 +53,19 @@ class QueryProcessor():
         query_ranked_phrase = r.get_ranked_phrases()
         query_ranked_phrase_with_score = r.get_ranked_phrases_with_scores()
 
+        print("query_ranked_phrase_with_score : ", query_ranked_phrase_with_score)
+
         # Creating objects
         process = QueryProcessor()
-        db = Mongo()
-        elasticSearch = QuesDataToElasticSearch()
-        embeddings = ElasticSearchToEmbeddings()
-        qaNet = EmbeddingsToQANet()
+        db = Mongo.Mongo()
+        elasticSearch = QuesDataToElasticSearch.QuesDataToElasticSearch()
+        embeddings = ElasticSearchToEmbeddings.ElasticSearchToEmbeddings()
+        qaNet = EmbeddingsToQANet.EmbeddingsToQANet()
 
         # get data from database layer
-        raked_data = db.getFrom()  # yet to decide
+        raked_data = db.getFrom(0,0)  # yet to decide
+
+        #raked_data = 0
 
         # Feed raked query and raked data to QuesDataToElasticSearch, get result selected_raked_para
         selected_raked_para = elasticSearch.QuesDataToElasticSearch(raked_data, query_ranked_phrase_with_score)
@@ -75,7 +80,6 @@ class QueryProcessor():
         # Feed vectors query_vec and para_vec to EmbeddingsToQANet, get test answer.
         response = qaNet.EmbeddingsToQANet(query_vec, para_vec)
 
-        # response = query
 
         # Example of storing something in database
 
@@ -85,6 +89,12 @@ class QueryProcessor():
 
         return response
 
+    def main(self):
+        queryProcessor = QueryProcessor()
+        queryProcessor.predict("This is a sample query")
+
+    if __name__ == "__main__":
+        main()
 
 """
 Steps:
