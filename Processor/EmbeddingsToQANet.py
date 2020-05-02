@@ -1,4 +1,4 @@
-from Engines import QueryProcessor
+from Engines import queryProcessor
 
 class EmbeddingsToQANet():
     def __init__(self):

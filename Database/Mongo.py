@@ -10,7 +10,7 @@ import logging
 from datetime import datetime
 import pandas as pd
 from Database.Database import Database
-from Engines import QueryProcessor
+from Engines import queryProcessor
 from ConfigParser.ConfigParser import ConfigurationParser
 
 
