@@ -10,43 +10,53 @@ This class ExtractChunks provide the facilty to break the text file into list of
     generateKeywords: get keywords from each paragraph 
 """
 
+
 class ExtractChunks():
-    def __init__(self, text_path):
-        self.__chunks = []
-        self.__text_path = text_path
-        self.__text = ""
 
-    def createChunks(self):
-        text_file_ptr = open(self.__text_path)
-        self.__text = text_file_ptr.read()
-        self.generateTitles()
-        self.generatePara()
-        self.generateKeywords()
+    def createChunks(self, text_path):
+        text_file_ptr = open(text_path)
+        chunks = []
+        text = text_file_ptr.read()
+        self.generateTitles(chunks, text)
+        self.generatePara(chunks, text)
+        self.generateKeywords(chunks)
 
-
-    def generateTitles(self):
-        table_of_content =  re.findall("[\w\s&\-\,\_\?\&\'\(\)\:\/]+\s*\.+\s*\d+", self.__text)
+    def generateTitles(self, chunks, text):
+        table_of_content = re.findall("(?!\s)[\w\s&\-\,\_\?\&\'\(\)\:\/]+\.\.+\s\d+", text)
         for title in table_of_content:
             temp = Chunks()
-            temp.setTitle(title.split(".")[0].split(" ",1)[1])
-            self.__chunks.append(temp)
-        for chunks in self.__chunks:
-            print(chunks._Chunks__title)
+            temp.setTitle(title.split(".")[0])
+            chunks.append(temp)
 
-    def generatePara(self):
-        chunk_len = len(self.__chunks)
-        content = self.__text.split(self.__chunks[chunk_len-1]._Chunks__title)
-        for i in range(0,chunk_len-2):
-            temp = self.__chunks[i]
-            para = re.findall(self.__chunks[i]._Chunks__title + "[\w\s\W]+"+ self.__chunks[i+1]._Chunks__title, content[1], flags=re.IGNORECASE)
+    def generatePara(self, chunks, text):
+        chunk_len = len(chunks)
+
+        # split the text file on the first occurance of the last title
+        content = text.split(chunks[chunk_len - 1]._Chunks__title, 1)
+
+        for i in range(0, chunk_len):
+            temp = chunks[i]
+            if i != chunk_len - 1:
+                para = re.findall(
+                    re.escape(chunks[i]._Chunks__title) + "[\w\s\W]+" + re.escape(chunks[i + 1]._Chunks__title),
+                    content[1], flags=re.IGNORECASE)
+            else:
+                para = re.findall(re.escape(chunks[i]._Chunks__title) + "[\w\s\W]+", content[1], flags=re.IGNORECASE)
             temp.setPara(" ".join(para))
 
-    def generateKeywords(self):
+
+    def generateKeywords(self, chunks):
         r = Rake()
-        for chunk in self.__chunks:
+        for chunk in chunks:
             text = chunk._Chunks__para
             r.extract_keywords_from_text(text)
             chunk.setKeywords(r.get_ranked_phrases_with_scores())
+        for chunk in chunks:
+            print(chunk._Chunks__title)
+            print(chunk._Chunks__para)
+            print(chunk._Chunks__keywords)
+            print("\n**\n")
+
 
 """
 Each chunk has a title, a paragraph under that title and keywords in that particular paragraphs
