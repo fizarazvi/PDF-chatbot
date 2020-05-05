@@ -11,14 +11,12 @@ This class provides an facility to read PDF page by page and writes them into a 
     - extractTextByPage : Creates a comprehensive text of PDF
     - extractText :  writes the text to .txt handle
 """
-class PDFToText():
-    def __init__(self, pdf_path):
-        self.__pdf_path = pdf_path
-        self.__text_path = '../SampleText/' + pdf_path.rsplit('/',1)[-1][:-4] + '-text.txt'
-        self.__out_ptr = open(self.__text_path, "w")
 
-    def extractTextByPage(self):
-        with open(self.__pdf_path, 'rb') as fh:
+
+class PDFToText:
+
+    def extractTextByPage(self, pdf_path):
+        with open(pdf_path, 'rb') as fh:
             for page in PDFPage.get_pages(fh,
                                           caching=True,
                                           check_extractable=True):
@@ -35,8 +33,10 @@ class PDFToText():
                 converter.close()
                 fake_file_handle.close()
 
-    def extractText(self):
-        for page in self.extractTextByPage():
-            self.__out_ptr.write(page)
-
-
+    def extractText(self, pdf_path):
+        text_path = '../uploads/' + pdf_path.rsplit('/', 1)[-1][:-4] + '-text.txt'
+        out_ptr = open(text_path, "w")
+        for page in self.extractTextByPage(pdf_path):
+            out_ptr.write(page)
+        out_ptr.close()
+        return text_path
