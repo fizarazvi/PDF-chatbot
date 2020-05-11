@@ -63,9 +63,7 @@ class QueryProcessor():
         qaNet = EmbeddingsToQANet.EmbeddingsToQANet()
 
         # get data from database layer
-        raked_data = db.getFrom(0,0)  # yet to decide
-
-        #raked_data = 0
+        raked_data = db.getFrom("data","processed_data")  # yet to decide
 
         # Feed raked query and raked data to QuesDataToElasticSearch, get result selected_raked_para
         selected_raked_para = elasticSearch.QuesDataToElasticSearch(raked_data, query_ranked_phrase_with_score)
