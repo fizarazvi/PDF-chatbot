@@ -6,6 +6,7 @@ Created on Fri Mar 13 19:35:04 2020
 """
 
 import Engines.queryProcessor
+from Database import Mongo
 
 class QuesDataToElasticSearch():
 
@@ -18,6 +19,8 @@ class QuesDataToElasticSearch():
         return selected_rake_para
 
     def matchRakedParaToTextPara(self, selected_raked_para):
-        selected_text_para = 0
+        selected_text_para = db.getFrom("data", "processed_data", """ filter: condition for matching """)
 
         return selected_text_para
+
+db = Mongo()

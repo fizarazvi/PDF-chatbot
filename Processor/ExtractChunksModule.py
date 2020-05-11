@@ -1,6 +1,8 @@
 import re
 from rake_nltk import Rake
 from ChunksModule import Chunks
+from storeInDB import storeInMongo
+
 
 """
 This class ExtractChunks provide the facilty to break the text file into list of chunks(title, paragraph, keywords)
@@ -20,6 +22,10 @@ class ExtractChunks():
         self.generateTitles(chunks, text)
         self.generatePara(chunks, text)
         self.generateKeywords(chunks)
+        storeInMongo(chunks)
+        #store_In_DB = storeInDB()
+        #store_In_DB.storeInMongo(chunks)
+
 
     def generateTitles(self, chunks, text):
         table_of_content = re.findall("(?!\s)[\w\s&\-\,\_\?\&\'\(\)\:\/]+\.\.+\s\d+", text)
