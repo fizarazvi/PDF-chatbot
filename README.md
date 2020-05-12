@@ -47,3 +47,16 @@ Create Download BAT Script to download Glove and store it in ThirdPartyData Fold
 To All : 
 Let's set Elastic Server on our systems post tomorrow's call and start working on a class to use the functionality.
 Aim for this week to deploy this code on server. We will implement further the internal working once this is deployed.
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Merge from Ratan Singh
+
+- Fixed End to End flow
+- Fixed Singleton and ConfigParser Issues; changed the name as per PEP Naming conventions
+- Made abstract classes as parent in concrete classes
+- Refactored routes.py to app.py and deleted folder RestServer
+- Added a class for Reading Glove file
+- Refactored the interface of contents of Processors
+
+------------------------------------------------------------------------------------------------------------------------------------
