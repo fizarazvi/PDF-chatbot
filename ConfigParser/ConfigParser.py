@@ -29,9 +29,6 @@ class ConfigurationParser(metaclass = Singleton):
     """
     def getEngineConfig(self, engineName):
        try:
-           database = self.__config[engineName]['database'] if 'database' in list(self.__config[engineName]) else 'Database'
-           serverDefault = self.getServerConfig()
-           databaseDefault = self.getDatabaseConfig(database)
            return dict(self.__config[engineName])
        except:
            raise ValueError('No Configurations found for Engine {}'.format(engineName))

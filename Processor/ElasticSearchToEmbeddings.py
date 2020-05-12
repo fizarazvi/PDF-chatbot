@@ -1,4 +1,3 @@
-import Engines.queryProcessor
 
 class ElasticSearchToEmbeddings():
     def __init__(self):

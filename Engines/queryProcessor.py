@@ -5,14 +5,13 @@ Created on Fri Mar 13 19:35:04 2020
 @author: Srinath Ravikumar
 """
 
+
 import logging
 from datetime import datetime
-
-# from Factory import ??
-#from Engines import Engine
-import engineio
 from rake_nltk import Rake
 from nltk.corpus import stopwords
+
+from Engines.Engine import Engine
 from Database import Mongo
 from Processor import QuesDataToElasticSearch, ElasticSearchToEmbeddings, EmbeddingsToQANet
 
@@ -21,14 +20,22 @@ Driver class for processing the query and data, delivering final answer to the U
 """
 
 
-class QueryProcessor():
+class QueryProcessor(Engine):
 
     # Never instatiate a class with some object that will chnage again and again.
     # Hence removing parameter query from here.
-    def __init__(self):
-        self.__query = None
-        logging.basicConfig(filename="logs/queryProcessor.log", filemode='w', level=logging.DEBUG)
 
+    
+
+    def __init__(self):
+
+        LOG_FILE = "logs/queryProcessor.log"
+        self.__logger = logging.getLogger("queryProcessorr")
+        file_handler = logging.FileHandler(LOG_FILE)
+        self.__logger.addHandler(file_handler)
+        
+        self.__query = ""
+        
         # Will implement in later stages
 
     def train(self, trainData):
@@ -39,7 +46,7 @@ class QueryProcessor():
         #query = "This is a sample query"
 
         # Logging the query
-        logging.info("[{}] : Received Query : {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), query))
+        self.__logger.info("[{}] : Received Query : {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), query))
 
         """
         Fill in your logic to procss the query here.
@@ -82,17 +89,10 @@ class QueryProcessor():
         # Example of storing something in database
 
         # Logging the response
-        logging.info("[{}] : Answer Sent : {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), response))
-        logging.info("--" * 30)
+        self.__logger.info("[{}] : Answer Sent : {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), response))
+        self.__logger.info("--" * 30)
 
         return response
-
-    def main(self):
-        queryProcessor = QueryProcessor()
-        queryProcessor.predict("This is a sample query")
-
-    if __name__ == "__main__":
-        main()
 
 """
 Steps:
