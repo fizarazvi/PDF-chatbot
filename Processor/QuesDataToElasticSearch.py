@@ -5,8 +5,7 @@ Created on Fri Mar 13 19:35:04 2020
 @author: Srinath Ravikumar
 """
 
-import Engines.queryProcessor
-from Database import Mongo
+from Database.Mongo import Mongo
 
 class QuesDataToElasticSearch():
 

@@ -10,24 +10,33 @@ import logging
 from datetime import datetime
 import pandas as pd
 from Database.Database import Database
-from Engines import queryProcessor
-from ConfigParser.ConfigParser import ConfigurationParser
 
+from ConfigParser.ConfigParser import ConfigurationParser
+from Utilities.Singleton import Singleton
 
 class Mongo(Database):
     
     def __init__(self):
         
-        # Instating Logger
-        logging.basicConfig(filename="logs/database.log", filemode='w', level=logging.DEBUG)    
+        # This makes class singelton
+        __metaclass__ = Singleton
+
+        # Instating Logger 
+        LOG_FILE = "logs/database.log"
+        self.__logger = logging.getLogger("mongo")
+        file_handler = logging.FileHandler(LOG_FILE)
+        self.__logger.addHandler(file_handler)
+
+        self.__config = ConfigurationParser()
+
 
         # Database server configurations
-        self.__host = "localhost"
-        self.__port = 27017
+        self.__port = int(self.__config.getDatabaseConfig()['port'])
+        self.__host = self.__config.getDatabaseConfig()['host']
         self.__maxDelay = 10
+        
         self.__connect()
-    
-
+        
 
 
     """
@@ -37,8 +46,8 @@ class Mongo(Database):
         try:
             self.__client = MongoClient(self.__host , self.__port, serverSelectionTimeoutMS = self.__maxDelay)
             self.__client.server_info()
-            logging.info("[{}] : Successfully connected to database server at {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), self.__host + str(self.__port)))
-            logging.info("=="*30)
+            self.__logger.info("[{}] : Successfully connected to database server at {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), self.__host + ":"+ str(self.__port)))
+            self.__logger.info("=="*30)
         except: 
             logging.error("[{}] : Could not connect to database server. Database connection is down.".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S")))
             raise ConnectionError("Could not connect to database server. Database connection is down.")
@@ -53,7 +62,7 @@ class Mongo(Database):
         try:
             return self.__client[db]
         except:
-            logging.error("[{}] : Cannot find / create database {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),db))
+            self.__logger.error("[{}] : Cannot find / create database {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),db))
             raise ValueError("Error finding / creating database {}".format(db))
     
     
@@ -78,7 +87,7 @@ class Mongo(Database):
             collection = db[collectionName]
             return collection
         except:
-            logging.error("[{}] : Cannot find / create collection {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),collectionName))
+            self.__logger.error("[{}] : Cannot find / create collection {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),collectionName))
             raise ValueError("Error finding / creating collection {}".format(collectionName))
        
     
@@ -112,16 +121,16 @@ class Mongo(Database):
         collection = self.getCollection(dbName,collectionName)
         if isinstance(data, list):
             collection.insert_many(data)
-            logging.info("[{}] : Inserted {} rows into {} collection of {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),str(len(data)), collectionName, dbName))
+            self.__logger.info("[{}] : Inserted {} rows into {} collection of {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),str(len(data)), collectionName, dbName))
         elif isinstance(data, dict):            
             collection.insert_one(data)
-            logging.info("[{}] : Inserted a row into {} collection of {} database with values {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),collectionName, dbName,str(data)))
+            self.__logger.info("[{}] : Inserted a row into {} collection of {} database with values {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),collectionName, dbName,str(data)))
         elif isinstance(data, pd.DataFrame):
             data = list(data.to_dict(orient='index').values())            
             collection.insert_many(data)
-            logging.info("[{}] : Inserted {} rows into {} collection of {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),str(len(data)), collectionName, dbName))
+            self.__logger.info("[{}] : Inserted {} rows into {} collection of {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),str(len(data)), collectionName, dbName))
         else:
-            logging.info("[{}] : Data type not supported for insertion. Expected list of dict/ dict, Found {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),str(type(data))))
+            self.__logger.info("[{}] : Data type not supported for insertion. Expected list of dict/ dict, Found {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),str(type(data))))
             raise TypeError("Data type not supported for insertion. Expected list of dict/ dict, Found {}".format(str(type(data))))
             
     
@@ -143,6 +152,6 @@ class Mongo(Database):
                 data = json_data
             return data
         except:
-            logging.info("[{}] : Error in Querying {} collection of {} database".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),collectionName, dbName))
+            self.__logger.info("[{}] : Error in Querying {} collection of {} database".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),collectionName, dbName))
             raise ValueError("No Data found with given name")
     

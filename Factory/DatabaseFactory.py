@@ -10,14 +10,14 @@ import logging
 from Database.Mongo import Mongo
 from Utilities.Singleton import Singleton
 
-class DatabaseFactory(metaclass=Singleton):
+class DatabaseFactory(metaclass = Singleton):
     
     def __init__(self):
         pass
     
     def getDatabase(self,databaseType):
-        database = eval(databaseType.capitalize()+"()")
         try:
+            database = eval(databaseType.capitalize()+"()")
             logging.info("[{}] : Database object of type {} created.".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"),databaseType))
             return database
         except:
