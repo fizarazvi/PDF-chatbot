@@ -5,6 +5,8 @@ Created on Fri Mar 13 19:35:04 2020
 @author: Srinath Ravikumar
 """
 
+# Decomission this - We dont need an explicit class to convert data to RAKE. Also ElasticSearch Feeder was supposed to be done by Shubham
+
 from Database.Mongo import Mongo
 
 class QuesDataToElasticSearch():

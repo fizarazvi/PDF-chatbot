@@ -4,6 +4,10 @@ This class provides a format to define a chunk having title, paragraph and keywo
     setPara: assigns paragraph to the chunk object
     setKeywords: assigns keywords from the paragraph to the chunk object
 """
+
+# We dont need class to define a data structure in Python like in Java
+# Decommission This.
+
 class Chunks():
     def __init__(self):
         self.__title = ""
