@@ -4,6 +4,12 @@
   display: flex;
   justify-content: center;
 }
+.askPDFButton{
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    text-align: center;
+}
 .wrapper {
   margin: 30px;
   padding: 10px;

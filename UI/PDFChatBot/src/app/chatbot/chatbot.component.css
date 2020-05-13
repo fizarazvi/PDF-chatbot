@@ -1,4 +1,4 @@
-button{
+.send_button{
     height: 100%;
     background: aqua;
     position: absolute;
@@ -24,9 +24,17 @@ input{
 
 }
 .chatbot-title{
-  flex-shrink: 0;
-  background: aqua;
-  padding: 5px;
+    border: 1px solid #0ac4ca;
+    flex-shrink: 0;
+    background: aqua;
+    padding: 5px;
+    width: -webkit-fill-available;
+    position: relative;
+}
+.upload_button{
+    position: absolute;
+    top: 25%;
+    right: 2%;
 }
 .col-md-2, .col-md-10{
     padding:0;
