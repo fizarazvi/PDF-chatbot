@@ -7,7 +7,9 @@ from Engines.QueryProcessor import QueryProcessor
 from ConfigParser.ConfigParser import ConfigurationParser
 from Factory.DatabaseFactory import DatabaseFactory
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='',
+            static_folder='templates',
+            template_folder='templates')
 config = ConfigurationParser()
 db = DatabaseFactory().getDatabase(config.getEngineConfig("SmartPDFAssistant")['database'])
 portNumber = int(config.getServerConfig()['port'])

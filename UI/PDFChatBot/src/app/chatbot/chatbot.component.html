@@ -1,6 +1,9 @@
 <div class="chatbot-container"  >
     <div class="chatbot-title">
           <h3 class="panel-title">ChatBot</h3>
+          <div class="upload_button">
+            <button routerLink="/upload" >Upload PDF</button>
+          </div>
       </div>
     <div class="scrollbar_try" #scrollframe>
 
@@ -28,7 +31,7 @@
 
     <div class="text-send">
       <input type="text" placeholder="Write your message here..." [(ngModel)]="question" (keyup.enter)="handleUserMessage()" />
-      <button  (click)="handleUserMessage()">Send</button>
+      <button class="send_button" (click)="handleUserMessage()">Send</button>
     </div>
 
 </div>

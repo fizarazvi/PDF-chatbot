@@ -1,0 +1,13 @@
+.parent{
+  position: relative
+}
+.architecture_div{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.button_div{
+  position: absolute;
+  top: 0;
+  right: 10%;
+}
