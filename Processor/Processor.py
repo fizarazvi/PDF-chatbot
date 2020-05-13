@@ -16,11 +16,8 @@ class Processor(ABC):
     """
     Will load the model from database and predict the output
     """
-    def predict(self, testData):
+    def transform(self):
         pass
 
-    def getQuery(self):
-        pass
-
-    def QuesDataToElasticSearch(self):
+    def load(self, data):
         pass

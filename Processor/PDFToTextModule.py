@@ -5,6 +5,9 @@ from pdfminer.pdfinterp import PDFPageInterpreter
 from pdfminer.pdfinterp import PDFResourceManager
 from pdfminer.pdfpage import PDFPage
 
+from Processor.Processor import Processor
+from Utilities.Singleton import Singleton
+
 """
 PDFToText
 This class provides an facility to read PDF page by page and writes them into a text file
@@ -13,7 +16,12 @@ This class provides an facility to read PDF page by page and writes them into a 
 """
 
 
-class PDFToText:
+class PDFToText(Processor):
+
+    def __init__(self):
+        __metaclass__ = Singleton
+        self.__text = ""
+
 
     def extractTextByPage(self, pdf_path):
         with open(pdf_path, 'rb') as fh:

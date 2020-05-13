@@ -12,7 +12,8 @@ from rake_nltk import Rake
 from nltk.corpus import stopwords
 
 from Engines.Engine import Engine
-from Database import Mongo
+from Factory.DatabaseFactory import DatabaseFactory
+from ConfigParser.ConfigParser import ConfigurationParser
 from Processor import QuesDataToElasticSearch, ElasticSearchToEmbeddings, EmbeddingsToQANet
 
 """
@@ -33,9 +34,10 @@ class QueryProcessor(Engine):
         self.__logger = logging.getLogger("queryProcessorr")
         file_handler = logging.FileHandler(LOG_FILE)
         self.__logger.addHandler(file_handler)
-        
-        self.__query = ""
-        
+
+        self.__config = ConfigurationParser()
+        self.__database = DatabaseFactory().getDatabase(self.__config.getEngineConfig("SmartPDFAssistant")['database'])
+              
         # Will implement in later stages
 
     def train(self, trainData):
@@ -47,7 +49,6 @@ class QueryProcessor(Engine):
 
         # Logging the query
         self.__logger.info("[{}] : Received Query : {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), query))
-
         """
         Fill in your logic to procss the query here.
         Curently this will return the same question as response from here.
@@ -63,34 +64,40 @@ class QueryProcessor(Engine):
         print("query_ranked_phrase_with_score : ", query_ranked_phrase_with_score)
 
         # Creating objects
-        process = QueryProcessor()
-        db = Mongo.Mongo()
+        #process = QueryProcessor()
+        #db = Mongo.Mongo()
         elasticSearch = QuesDataToElasticSearch.QuesDataToElasticSearch()
         embeddings = ElasticSearchToEmbeddings.ElasticSearchToEmbeddings()
         qaNet = EmbeddingsToQANet.EmbeddingsToQANet()
 
         # get data from database layer
-        raked_data = db.getFrom("data","processed_data")  # yet to decide
+        #raked_data = db.getFrom("data","processed_data")  # yet to decide
 
         # Feed raked query and raked data to QuesDataToElasticSearch, get result selected_raked_para
-        selected_raked_para = elasticSearch.QuesDataToElasticSearch(raked_data, query_ranked_phrase_with_score)
+        #selected_raked_para = elasticSearch.QuesDataToElasticSearch(raked_data, query_ranked_phrase_with_score)
 
         # Match result selected_raked_para with text paragraphs in data, get selected_text_para .
-        selected_text_para = elasticSearch.matchRakedParaToTextPara(selected_raked_para)
+        #selected_text_para = elasticSearch.matchRakedParaToTextPara(selected_raked_para)
 
         # Feed text query and selected_text_para to ElasticSearchToEmbeddings, get vectors query_vec and para_vec
-        query_vec = embeddings.ElasticSearchToEmbeddings(query, "query")
-        para_vec = embeddings.ElasticSearchToEmbeddings(selected_text_para, "data")
+        #query_vec = embeddings.ElasticSearchToEmbeddings(query, "query")
+        #para_vec = embeddings.ElasticSearchToEmbeddings(selected_text_para, "data")
 
         # Feed vectors query_vec and para_vec to EmbeddingsToQANet, get test answer.
-        response = qaNet.EmbeddingsToQANet(query_vec, para_vec)
-
+        #response = qaNet.EmbeddingsToQANet(query_vec, para_vec)
+        response = "I am Batman !"
 
         # Example of storing something in database
 
         # Logging the response
         self.__logger.info("[{}] : Answer Sent : {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), response))
         self.__logger.info("--" * 30)
+
+        # Insertion into DB
+        defaultAnswer = "This is default answer."
+
+        self.__database.insertInto("PDFAssistant","QueryHistory", {'Date' : datetime.now().strftime("%d/%m/%Y %H:%M:%S"), 'Query' : query, 'Answer' : defaultAnswer})
+
 
         return response
 
