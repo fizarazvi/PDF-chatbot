@@ -44,4 +44,13 @@ class ConfigurationParser(metaclass = Singleton):
             return dict(self.__config[databaseName])
         except:
             raise ValueError("No Configurations found for Database {}".format(databaseName))
-        
+
+    """
+        Returns the configuration of Elastic Server
+    """
+
+    def getElasticServerConfig(self, elasticserver='Elastic Server'):
+        try:
+            return dict(self.__config[elasticserver])
+        except:
+            raise ValueError("No Configurations found for Elastic Server {}".format(elasticServer))
