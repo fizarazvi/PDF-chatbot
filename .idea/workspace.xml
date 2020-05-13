@@ -2,75 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c49ac3d1-ce64-4a96-b9fd-832a3b567a13" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Engines/queryProcessor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/kill.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/restart.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/start.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/angular.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/browserslist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/e2e/protractor.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/e2e/src/app.e2e-spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/e2e/src/app.po.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/e2e/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/karma.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/app/app-routing.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/app/app.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/app/app.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/app/app.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/app/app.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/app/app.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/app/chatbot/chatbot.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/app/chatbot/chatbot.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/app/chatbot/chatbot.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/app/chatbot/chatbot.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/app/up-pdf/up-pdf.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/app/up-pdf/up-pdf.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/app/up-pdf/up-pdf.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/app/up-pdf/up-pdf.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/app/upload.service.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/app/upload.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/assets/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/environments/environment.prod.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/environments/environment.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/main.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/polyfills.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/src/test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/tsconfig.app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/tsconfig.spec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/PDFChatBot/tslint.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/routes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/templates/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/templates/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/templates/main.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/templates/polyfills.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/templates/polyfills.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/templates/runtime.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/templates/runtime.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/templates/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/templates/styles.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/templates/vendor.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restServer/templates/vendor.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ElasticServer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Logs/ElasticServer.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testElastic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Smart-pdf-assistant.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Smart-pdf-assistant.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engines/Engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/Engines/Engine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engines/QueryProcessor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Engines/QueryProcessor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engines/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Engines/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/app.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConfigParser/ConfigParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/ConfigParser/ConfigParser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elasticsearch.py" beforeDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -88,6 +41,19 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python">
@@ -124,6 +90,17 @@
       <updated>1584645675468</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
