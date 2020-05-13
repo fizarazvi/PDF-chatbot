@@ -48,6 +48,14 @@ To All :
 Let's set Elastic Server on our systems post tomorrow's call and start working on a class to use the functionality.
 Aim for this week to deploy this code on server. We will implement further the internal working once this is deployed.
 
+Elastic Server function:
+
+- connect to the elastic server(done)
+- Create new index for the pdf (done)
+- upload dictionary/dataframe
+- search for the most probably shard 
+
+
 -----------------------------------------------------------------------------------------------------------------------------------
 
 Merge from Ratan Singh
@@ -60,3 +68,4 @@ Merge from Ratan Singh
 - Refactored the interface of contents of Processors
 
 ------------------------------------------------------------------------------------------------------------------------------------
+
