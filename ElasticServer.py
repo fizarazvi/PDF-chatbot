@@ -41,7 +41,7 @@ class ElasticServer:
 
     def createIndex(self, index_name):
         created = False
-        settings = {  # Not used
+        settings = {  
             "settings": {
                 "number_of_shards": 1,  # change according to number of chunks
                 "number_of_replicas": 0
