@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c49ac3d1-ce64-4a96-b9fd-832a3b567a13" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/ElasticServer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Logs/ElasticServer.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testElastic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Smart-pdf-assistant.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Smart-pdf-assistant.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConfigParser/ConfigParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/ConfigParser/ConfigParser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elasticsearch.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ElasticServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/ElasticServer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testElastic.py" beforeDir="false" afterPath="$PROJECT_DIR$/testElastic.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +90,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
