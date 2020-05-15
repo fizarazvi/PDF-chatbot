@@ -1,9 +1,9 @@
-from Engines import queryProcessor
+from Processor import PDFProcessor
 
 
 def main():
-    qp = queryProcessor.QueryProcessor()
-    qp.main()
+    if __name__ == '__main__':
+        PDFProcessor.PDFProcessor().processPdf()
 
 
 class Test:
