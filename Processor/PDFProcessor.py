@@ -12,6 +12,10 @@ from pdfminer.pdfpage import PDFPage
 
 import re
 from rake_nltk import Rake
+from datetime import datetime
+from Factory.DatabaseFactory import DatabaseFactory
+from ConfigParser.ConfigParser import ConfigurationParser
+
 
 # commented following lines, issues while importing them
 # from Processor.Processor import Processor
@@ -31,12 +35,14 @@ class PDFProcessor:
         parser = argparse.ArgumentParser(description="Enter document filename")
         parser.add_argument('doc', help='document filename')
         args = parser.parse_args()
-        pdf_path = '../uploads/' + args.doc  # input document filename
+        pdf_path = 'uploads/' + args.doc  # input document filename
         text_path = self.__extractText(pdf_path)
-        self.__createChunks(text_path)
+        processed_pdf = self.__createChunks(text_path)
+        self.__addToDatabase(processed_pdf)
+
 
     def __extractText(self, pdf_path):
-        text_path = '../uploads/' + pdf_path.rsplit('/', 1)[-1][:-4] + '-text.txt'
+        text_path = 'uploads/' + pdf_path.rsplit('/', 1)[-1][:-4] + '-text.txt'
         out_ptr = open(text_path, "w")
         for page in self.__extractTextByPage(pdf_path):
             out_ptr.write(page)
@@ -68,9 +74,8 @@ class PDFProcessor:
         self.__generateTitles(chunks, text)
         self.__generatePara(chunks, text)
         self.__generateKeywords(chunks)
-        # storeInMongo(chunks)
-        # store_In_DB = storeInDB()
-        # store_In_DB.storeInMongo(chunks)
+        return chunks
+
 
     def __generateTitles(self, chunks, text):
         table_of_content = re.findall("(?!\s)[\w\s&\-\,\_\?\&\'\(\)\:\/]+\.\.+\s\d+", text)
@@ -99,11 +104,18 @@ class PDFProcessor:
             text = chunk[1]
             r.extract_keywords_from_text(text)
             chunk.append(r.get_ranked_phrases_with_scores())
-        for chunk in chunks:
+        '''for chunk in chunks:
             print(chunk[0])
             print(chunk[1])
             print(chunk[2])
-            print("\n**\n")
+            print("\n**\n")'''
+
+    def __addToDatabase(self, chunks):
+        self.__config = ConfigurationParser()
+        self.__database = DatabaseFactory().getDatabase(self.__config.getEngineConfig("SmartPDFAssistant")['database'])
+
+        for chunk in chunks:
+            self.__database.insertInto("PDFAssistant", "ProcessedPDF",{'Date': datetime.now().strftime("%d/%m/%Y %H:%M:%S"), 'Title': chunk[0],'Text': chunk[1], 'Keywords': chunk[2]})
 
 
 """
