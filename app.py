@@ -16,6 +16,8 @@ portNumber = int(config.getServerConfig()['port'])
 
 
 queryProcessor = QueryProcessor()
+queryProcessor.train()
+#queryProcessor.predict()
 
 LOG_FILE = "logs/server.log"
 logger = logging.getLogger("server")
@@ -42,7 +44,7 @@ def handleFileUpload():
             #for absolute path
             path_ = os.path.abspath(__file__ + "/../..")
             pdf.save(os.path.join(path_, 'uploads', pdf.filename))
-            logger.info("[{}] : PDF file {} saved in uploads".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), pdf.filename))            
+            logger.info("[{}] : PDF file {} saved in uploads".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), pdf.filename))
     render_template('index.html')
     return jsonify({'data': {'status': 'uploaded..'}})
 
