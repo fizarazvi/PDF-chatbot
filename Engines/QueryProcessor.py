@@ -14,7 +14,7 @@ from nltk.corpus import stopwords
 from Engines.Engine import Engine
 from Factory.DatabaseFactory import DatabaseFactory
 from ConfigParser.ConfigParser import ConfigurationParser
-from Processor import QuesDataToElasticSearch, ElasticSearchToEmbeddings, EmbeddingsToQANet
+from Processor import PDFProcessor, QuesDataToElasticSearch, ElasticSearchToEmbeddings, EmbeddingsToQANet
 
 """
 Driver class for processing the query and data, delivering final answer to the UI
@@ -26,22 +26,21 @@ class QueryProcessor(Engine):
     # Never instatiate a class with some object that will chnage again and again.
     # Hence removing parameter query from here.
 
-    
-
     def __init__(self):
 
         LOG_FILE = "logs/queryProcessor.log"
-        self.__logger = logging.getLogger("queryProcessorr")
+        self.__logger = logging.getLogger("queryProcessor")
         file_handler = logging.FileHandler(LOG_FILE)
         self.__logger.addHandler(file_handler)
 
         self.__config = ConfigurationParser()
         self.__database = DatabaseFactory().getDatabase(self.__config.getEngineConfig("SmartPDFAssistant")['database'])
-              
+
+
         # Will implement in later stages
 
-    def train(self, trainData):
-        pass
+    def train(self):
+        PDFProcessor.PDFProcessor().processPdf()
 
     # Will take the query and return the output
     def predict(self, query):
@@ -64,14 +63,13 @@ class QueryProcessor(Engine):
         print("query_ranked_phrase_with_score : ", query_ranked_phrase_with_score)
 
         # Creating objects
-        #process = QueryProcessor()
-        #db = Mongo.Mongo()
         elasticSearch = QuesDataToElasticSearch.QuesDataToElasticSearch()
         embeddings = ElasticSearchToEmbeddings.ElasticSearchToEmbeddings()
         qaNet = EmbeddingsToQANet.EmbeddingsToQANet()
 
         # get data from database layer
-        #raked_data = db.getFrom("data","processed_data")  # yet to decide
+        raked_data = self.__database.getFrom("PDFAssistant", "ProcessedPDF", 'Keywords')
+        print(raked_data)
 
         # Feed raked query and raked data to QuesDataToElasticSearch, get result selected_raked_para
         #selected_raked_para = elasticSearch.QuesDataToElasticSearch(raked_data, query_ranked_phrase_with_score)
@@ -94,9 +92,8 @@ class QueryProcessor(Engine):
         self.__logger.info("--" * 30)
 
         # Insertion into DB
-        defaultAnswer = "This is default answer."
 
-        self.__database.insertInto("PDFAssistant","QueryHistory", {'Date' : datetime.now().strftime("%d/%m/%Y %H:%M:%S"), 'Query' : query, 'Answer' : defaultAnswer})
+        self.__database.insertInto("PDFAssistant", "QueryHistory", {'Date' : datetime.now().strftime("%d/%m/%Y %H:%M:%S"), 'Query' : query, 'Answer' : response})
 
 
         return response
