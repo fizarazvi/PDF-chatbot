@@ -15,8 +15,8 @@ db = DatabaseFactory().getDatabase(config.getEngineConfig("SmartPDFAssistant")['
 portNumber = int(config.getServerConfig()['port'])
 
 
-queryProcessor = QueryProcessor()
-queryProcessor.train()
+# queryProcessor = QueryProcessor()
+# queryProcessor.train()
 #queryProcessor.predict()
 
 LOG_FILE = "logs/server.log"
@@ -42,11 +42,11 @@ def handleFileUpload():
         pdf = request.files['pdf']
         if pdf.filename != '':
             #for absolute path
-            path_ = os.path.abspath(__file__ + "/../..")
+            path_ = os.path.abspath(__file__ + "/../")
             pdf.save(os.path.join(path_, 'uploads', pdf.filename))
             logger.info("[{}] : PDF file {} saved in uploads".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), pdf.filename))
     render_template('index.html')
-    return jsonify({'data': {'status': 'uploaded..'}})
+    return jsonify({'data': {'status': 'uploaded'}})
 
 
 
