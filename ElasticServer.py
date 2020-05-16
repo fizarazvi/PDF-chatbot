@@ -18,6 +18,7 @@ class ElasticServer:
         self.__logger = logging.getLogger("Elastic Server")
         file_handler = logging.FileHandler(LOG_FILE)
         self.__logger.addHandler(file_handler)
+
         self._connect()
 
     def _connect(self):
@@ -30,13 +31,9 @@ class ElasticServer:
 
             # Connect to the elastic server
             self.__es = Elasticsearch([{'host': self.__host, 'port': self.__port}])
-            self.__logger.info("[{}] : Successfully connected to Elastic server at {}".format(
-                datetime.now().strftime("%d/%m/%Y %H:%M:%S"), self.__host + ":" + str(self.__port)))
-            self.__logger.info("==" * 30)
             print(self.__es)
         except:
-            logging.error(
-                "[{}] : Could not connect to Elastic server.".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S")))
+            print("Could not Connect to Elastic Server")
             raise ConnectionError("Could not connect to Elastic server.")
 
     def createIndex(self, index_name):
@@ -47,18 +44,20 @@ class ElasticServer:
                 "number_of_replicas": 0
             },
             "mappings": {
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "Title": {
-                        "type": "text"
-                    },
-                    "Keywords": {
-                        "type": "text"
-                    },
-                    "Paragraph": {
-                        "type": "text"
+                "Chunks": {
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "Title": {
+                            "type": "text"
+                        },
+                        "Keywords": {
+                            "type": "text"
+                        },
+                        "Paragraph": {
+                            "type": "text"
+                        }
                     }
                 }
             }
@@ -66,7 +65,8 @@ class ElasticServer:
         try:
             if not self.__es.indices.exists(index_name):
                 # Ignore 400 means to ignore "Index Already Exist" error.
-                res = self.__es.indices.create(index=index_name, ignore=400, body=settings)
+                # res = self.__es.indices.create(index=index_name, ignore=400, body=settings)
+                res = self.__es.indices.create(index=index_name, ignore=400)
                 print("Response:" + str(res))
                 print('Created Index')
                 created = True
@@ -84,58 +84,49 @@ class ElasticServer:
     def store_records(self, index_name):
         # later records can be read from a file
         rec1 = {
-            "id": 1,
             "Title": "Overview",
             "Keywords": "Hello, this, is, a, test.",
             "Paragraph": "Hello this is a test and a test this is."
         }
         rec2 = {
-            "id": 2,
             "Title": "Intro",
             "Keywords": "Hello, this, is, a, test.",
             "Paragraph": "Hello this is a test and a test this is."
         }
         rec3 = {
-            "id": 3,
             "Title": "Topic 1",
             "Keywords": "Hello, this, is, a, test.",
             "Paragraph": "Hello this is a test and a test this is."
         }
         try:
-            outcome = self.__es.index(index=index_name, body=rec1)
+            outcome = self.__es.index(index=index_name, doc_type='Chunks', body=rec1)
         except Exception as ex:
             print('Error in indexing data')
             print(str(ex))
         try:
-            outcome = self.__es.index(index=index_name, body=rec2)
+            outcome = self.__es.index(index=index_name, doc_type='Chunks', body=rec2)
         except Exception as ex:
             print('Error in indexing data')
             print(str(ex))
         try:
-            outcome = self.__es.index(index=index_name, body=rec3)
+            outcome = self.__es.index(index=index_name, doc_type='Chunks', body=rec3)
         except Exception as ex:
             print('Error in indexing data')
             print(str(ex))
+        #self.__es.transport.close()
 
-    def get_shard(self, index_name ):
-        # es = connect_elasticsearch()
+    def get_shard(self, index_name):
+        # self._connect()
+        # self.__es.createIndex(index_name)
+        # resp = self.__es.get(index=index_name, doc_type="Chunks", id=1)
         if self.__es is not None:
             search_object = json.dumps({
                 "query": {
-                    "match": {
-                        "Title": "Overview"
+                    "match_phrase": {  # or use match/ aggregations?
+                        "Title": "Topic"
                     }
                 }
             })
-            resp = self.__es.search(index=index_name, body=search_object)
+            resp = self.__es.search(index=index_name, doc_type="Chunks", body=search_object)
         print("Record:")
-        print(resp)
-        # Returning a response but it does not contain the details of the record.
-
-
-
-"""res = es.index(index='megacorp',doc_type='employee',id=1,body=e1)
-res = es.index(index='megacorp',doc_type='employee',id=2,body=e2)
-res = es.index(index='megacorp',doc_type='employee',id=3,body=e3)
-res=es.get(index='megacorp',doc_type='employee',id=3)
-print (res['_source'])"""
+        print(resp["hits"]["hits"])

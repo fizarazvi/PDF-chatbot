@@ -15,9 +15,9 @@ db = DatabaseFactory().getDatabase(config.getEngineConfig("SmartPDFAssistant")['
 portNumber = int(config.getServerConfig()['port'])
 
 
-# queryProcessor = QueryProcessor()
+queryProcessor = QueryProcessor()
 # queryProcessor.train()
-#queryProcessor.predict()
+# queryProcessor.predict()
 
 LOG_FILE = "logs/server.log"
 logger = logging.getLogger("server")
