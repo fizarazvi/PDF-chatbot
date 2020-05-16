@@ -1,37 +1,69 @@
 .parent{
-  position: relative;
-}
-.architecture_div{
-  position: absolute;
-  top: 0;
-  left: 0;
+  position:relative;
+  height: auto;
+  border: 1px solid #666;
+  background-color: teal;
 }
 
-body {
-background-image: url("assets/gray.jpg");
+.title_comp{
+  background-color: white;
+  border: 1px solid #666;
+  top: auto;
+  left: auto;
 }
 
-img {
-display: block;
-margin-left: auto;
-margin-right: auto;
-width: 80%;
+.arch_comp{
+  background-color: white;
+  border: 1px solid #666;
+  top: auto;
+  left: auto;
+
 }
 
-.title{
-background-color: lightgrey;
-color: blue;
-text-align: center;
+.arch_comp h1{
+  color: black;
 }
 
-.intro{
-background-image: url("assets/maroon.jpg");
-width: 1000px;
-border: 15px solid green;
-padding: 50px;
-margin: 20px;
+h1{
+  color: white;
+  text-align: center;
 }
 
-.intro_comp{
-text-align: center;
+h2{
+  color: black;
+  text-align: center;
+}
+
+h3{
+  color: black;
+  text-align: center;
+}
+
+#arch_img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  height: 80%
+}
+
+.button {
+  border: none;
+  padding: 15px 32px;
+  background-color: teal;
+  text-align: center;
+  color:white;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+footer h3{
+  color:white;
+}
+
+h1,h2,h3,p{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
