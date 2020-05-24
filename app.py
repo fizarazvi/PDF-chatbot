@@ -14,8 +14,6 @@ config = ConfigurationParser()
 db = DatabaseFactory().getDatabase(config.getEngineConfig("SmartPDFAssistant")['database'])
 portNumber = int(config.getServerConfig()['port'])
 
-
-
 queryProcessor = QueryProcessor()
 
 LOG_FILE = "logs/server.log"
@@ -31,8 +29,6 @@ def index():
     logger.info("rendering index")
     return render_template('index.html')
 
-
-
 # Route for uploading the file
 @app.route("/handleUpload", methods=['POST'])
 def handleFileUpload():
@@ -40,15 +36,13 @@ def handleFileUpload():
     if 'pdf' in request.files:
         pdf = request.files['pdf']
         if pdf.filename != '':
-            #for absolute path
+            # for absolute path
             path_ = os.path.abspath(__file__ + "/../")
             pdf.save(os.path.join(path_, 'uploads', pdf.filename))
             logger.info("[{}] : PDF file {} saved in uploads".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), pdf.filename))
+            queryProcessor.train(pdf.filename)
     render_template('index.html')
     return jsonify({'data': {'status': 'uploaded'}})
-
-
-
 
 # Route for predicting the answer
 @app.route("/questions", methods=['POST'])
@@ -65,4 +59,4 @@ def askQuestion():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(port = portNumber)
+    app.run(port=portNumber)

@@ -12,5 +12,6 @@ def storeInMongo(chunks):
     x = dbcol.insertInto(dbname, dbcol, chunks)
     print(x.inserted_ids)
 
+
 class storeInDB():
     pass

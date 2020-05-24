@@ -31,7 +31,7 @@ class ElasticServer:
 
             # Connect to the elastic server
             self.__es = Elasticsearch([{'host': self.__host, 'port': self.__port}])
-            print(self.__es)
+            #print(self.__es)
         except:
             print("Could not Connect to Elastic Server")
             raise ConnectionError("Could not connect to Elastic server.")
@@ -81,29 +81,19 @@ class ElasticServer:
         print(resp)
         print("Document created")
 
-    def store_records(self, index_name):
+    def store_records(self, index_name, chunk):
         # later records can be read from a file
         rec1 = {
-            "Title": "Overview",
-            "Keywords": "Hello, this, is, a, test.",
-            "Paragraph": "Hello this is a test and a test this is."
-        }
-        rec2 = {
-            "Title": "Intro",
-            "Keywords": "Hello, this, is, a, test.",
-            "Paragraph": "Hello this is a test and a test this is."
-        }
-        rec3 = {
-            "Title": "Topic 1",
-            "Keywords": "Hello, this, is, a, test.",
-            "Paragraph": "Hello this is a test and a test this is."
+            "Title": chunk[0],
+            "Text": chunk[1],
+            "Keywords": str(chunk[2])
         }
         try:
             outcome = self.__es.index(index=index_name, doc_type='Chunks', body=rec1)
         except Exception as ex:
             print('Error in indexing data')
             print(str(ex))
-        try:
+        '''try:
             outcome = self.__es.index(index=index_name, doc_type='Chunks', body=rec2)
         except Exception as ex:
             print('Error in indexing data')
@@ -112,8 +102,8 @@ class ElasticServer:
             outcome = self.__es.index(index=index_name, doc_type='Chunks', body=rec3)
         except Exception as ex:
             print('Error in indexing data')
-            print(str(ex))
-        #self.__es.transport.close()
+            print(str(ex))'''
+        # self.__es.transport.close()
 
     def get_shard(self, index_name):
         # self._connect()

@@ -15,7 +15,7 @@ from rake_nltk import Rake
 from datetime import datetime
 from Factory.DatabaseFactory import DatabaseFactory
 from ConfigParser.ConfigParser import ConfigurationParser
-
+from ElasticServer import ElasticServer
 
 # commented following lines, issues while importing them
 # from Processor.Processor import Processor
@@ -30,16 +30,20 @@ from ConfigParser.ConfigParser import ConfigurationParser
 
 
 class PDFProcessor:
+    def __init__(self, pdfname):
+        # args = parser.parse_args()
+        self.__pdfname = pdfname
+        pass
 
-    def processPdf(self):
-        parser = argparse.ArgumentParser(description="Enter document filename")
-        parser.add_argument('doc', help='document filename')
-        args = parser.parse_args()
-        pdf_path = 'uploads/' + args.doc  # input document filename
+    def processPdf(self, pdfname):
+        # parser = argparse.ArgumentParser(description="Enter document filename")
+        # parser.add_argument('doc', help='document filename')
+        # args = parser.parse_args()
+        pdf_path = 'uploads/' + pdfname  # input document filename
         text_path = self.__extractText(pdf_path)
         processed_pdf = self.__createChunks(text_path)
         self.__addToDatabase(processed_pdf)
-
+        self.__addToElasticServer(processed_pdf)
 
     def __extractText(self, pdf_path):
         text_path = 'uploads/' + pdf_path.rsplit('/', 1)[-1][:-4] + '-text.txt'
@@ -75,7 +79,6 @@ class PDFProcessor:
         self.__generatePara(chunks, text)
         self.__generateKeywords(chunks)
         return chunks
-
 
     def __generateTitles(self, chunks, text):
         table_of_content = re.findall("(?!\s)[\w\s&\-\,\_\?\&\'\(\)\:\/]+\.\.+\s\d+", text)
@@ -117,7 +120,12 @@ class PDFProcessor:
         for chunk in chunks:
             self.__database.insertInto("PDFAssistant", "ProcessedPDF",{'Date': datetime.now().strftime("%d/%m/%Y %H:%M:%S"), 'Title': chunk[0],'Text': chunk[1], 'Keywords': chunk[2]})
 
-
+    def __addToElasticServer(self, chunks):
+        es = ElasticServer()
+        pdfName = str(self.__pdfname).lower()
+        print(es.createIndex(pdfName))
+        for chunk in chunks:
+            es.store_records(pdfName, chunk)
 """
 This class ultimately provide a list of chunks from the pdf file by parsing it to text file using PDFToText and then ExtractChunks
 """

@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c49ac3d1-ce64-4a96-b9fd-832a3b567a13" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/getElastic.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/putElastic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ElasticServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/ElasticServer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engines/QueryProcessor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Engines/QueryProcessor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Processor/PDFProcessor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/PDFProcessor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Processor/QuesDataToElasticSearch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/QuesDataToElasticSearch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Processor/storeInDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/storeInDB.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Processor/uploadChunksToES.py" beforeDir="false" afterPath="$PROJECT_DIR$/Processor/uploadChunksToES.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testElastic.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/MC-text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/MC-text.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,6 +43,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Utilities" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">

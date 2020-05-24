@@ -9,6 +9,7 @@ Created on Fri Mar 13 19:35:04 2020
 
 from Database.Mongo import Mongo
 
+
 class QuesDataToElasticSearch():
 
     def __init__(self):
@@ -23,5 +24,6 @@ class QuesDataToElasticSearch():
         selected_text_para = db.getFrom("data", "processed_data", """ filter: condition for matching """)
 
         return selected_text_para
+
 
 db = Mongo()
