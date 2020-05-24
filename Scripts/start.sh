@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [[ ! -e app.py.pid ]]; then   # Check if the file already exists
+    cd ..
     python app.py &                   #+and if so do not run another process.
     echo $! > app.py.pid
 else
