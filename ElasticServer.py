@@ -105,18 +105,24 @@ class ElasticServer:
             print(str(ex))'''
         # self.__es.transport.close()
 
-    def get_shard(self, index_name):
+    def get_shard(self, index_name, query):
         # self._connect()
         # self.__es.createIndex(index_name)
         # resp = self.__es.get(index=index_name, doc_type="Chunks", id=1)
         if self.__es is not None:
             search_object = json.dumps({
                 "query": {
-                    "match_phrase": {  # or use match/ aggregations?
-                        "Title": "Topic"
+                    "match": {  # or use match/ aggregations?
+                        "Text":query
                     }
                 }
             })
             resp = self.__es.search(index=index_name, doc_type="Chunks", body=search_object)
-        print("Record:")
-        print(resp["hits"]["hits"])
+        #print("Record:")
+        #print(resp["hits"]["hits"])
+
+        selected_titles = []
+        for hit in resp["hits"]["hits"]:
+            selected_titles.append(hit['_source']['Title'])
+
+        return selected_titles
