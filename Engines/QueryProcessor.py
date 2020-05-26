@@ -40,7 +40,7 @@ class QueryProcessor(Engine):
 
     def train(self, pdfname):
         print("\n pdfname : "+pdfname)
-        processed = PDFProcessor.PDFProcessor(pdfname)
+        processed = PDFProcessor(pdfname)
         processed.processPdf(pdfname)
 
     # Will take the query and return the output
