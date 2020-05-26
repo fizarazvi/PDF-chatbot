@@ -13,7 +13,9 @@ from nltk.corpus import stopwords
 from Engines.Engine import Engine
 from Factory.DatabaseFactory import DatabaseFactory
 from ConfigParser.ConfigParser import ConfigurationParser
-from Processor import PDFProcessor, QuesDataToElasticSearch, ElasticSearchToEmbeddings, EmbeddingsToQANet
+from Processor.PDFProcessor import PDFProcessor
+from Processor.QuesDataToElasticSearch import QuesDataToElasticSearch
+from Processor.WMD import WMD
 
 """
 Driver class for processing the query and data, delivering final answer to the UI
@@ -37,61 +39,60 @@ class QueryProcessor(Engine):
         # Will implement in later stages
 
     def train(self, pdfname):
-        print("\n inside train"+pdfname)
+        print("\n pdfname : "+pdfname)
         processed = PDFProcessor.PDFProcessor(pdfname)
         processed.processPdf(pdfname)
 
     # Will take the query and return the output
     def predict(self, query):
-        # query = "This is a sample query"
 
         # Logging the query
         self.__logger.info("[{}] : Received Query : {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), query))
+
         """
         Fill in your logic to procss the query here.
         Curently this will return the same question as response from here.
         """
-        print("query : ", query)
 
         # Applying RAKE on query.
         r = Rake()
         query_keywords = r.extract_keywords_from_text(query)
         query_ranked_phrase = r.get_ranked_phrases()
-        query_ranked_phrase_with_score = r.get_ranked_phrases_with_scores()
+        query = ''.join(query_ranked_phrase)
 
-        print("query_ranked_phrase_with_score : ", query_ranked_phrase_with_score)
+        print("query_ranked_phrase : ", query_ranked_phrase)
+        print("query : ", query)
 
         # Creating objects
-        # elasticSearch = QuesDataToElasticSearch.QuesDataToElasticSearch()
-        # embeddings = ElasticSearchToEmbeddings.ElasticSearchToEmbeddings()
-        # qaNet = EmbeddingsToQANet.EmbeddingsToQANet()
+        elasticSearch = QuesDataToElasticSearch()
+        wmd = WMD()
 
-        # get data from database layer
-        raked_data = self.__database.getFrom("PDFAssistant", "ProcessedPDF", 'Keywords')
-        print(raked_data)
+        selected_titles = elasticSearch.QuesDataToElasticSearch(query)
 
-        # Feed raked query and raked data to QuesDataToElasticSearch, get result selected_raked_para
-        # selected_raked_para = elasticSearch.QuesDataToElasticSearch(raked_data, query_ranked_phrase_with_score)
+        #for i in selected_titles:
+            #response.append(wmd.predict(query_ranked_phrase, selected_titles[i]))
 
-        # Match result selected_raked_para with text paragraphs in data, get selected_text_para .
-        # selected_text_para = elasticSearch.matchRakedParaToTextPara(selected_raked_para)
+        db_data = self.__database.getFrom("PDFAssistant", "ProcessedPDF", '')
+        print("Titles\n", db_data['Title'])
+        print("Text\n", db_data['Text'])
 
-        # Feed text query and selected_text_para to ElasticSearchToEmbeddings, get vectors query_vec and para_vec
-        # query_vec = embeddings.ElasticSearchToEmbeddings(query, "query")
-        # para_vec = embeddings.ElasticSearchToEmbeddings(selected_text_para, "data")
+        i = 0
+        length = len(db_data['Title'])
+        while i < length:
+            if selected_titles[7] == db_data['Title'][i]:
+                break
+            i += 1
 
-        # Feed vectors query_vec and para_vec to EmbeddingsToQANet, get test answer.
-        # response = qaNet.EmbeddingsToQANet(query_vec, para_vec)
-        response = "I am Batman !"
+        response = db_data['Text'][i]
+        print("response : ", response)
 
-        # Example of storing something in database
+        #response = selected_titles[8]
 
         # Logging the response
         self.__logger.info("[{}] : Answer Sent : {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), response))
         self.__logger.info("--" * 30)
 
         # Insertion into DB
-
         self.__database.insertInto("PDFAssistant", "QueryHistory",
                                    {'Date': datetime.now().strftime("%d/%m/%Y %H:%M:%S"), 'Query': query,
                                     'Answer': response})
