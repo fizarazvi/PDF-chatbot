@@ -20,7 +20,7 @@ from ElasticServer import ElasticServer
 # commented following lines, issues while importing them
 # from Processor.Processor import Processor
 # from Utilities.Singleton import Singleton
-# from storeInDB import storeInMongo
+
 
 
 """
@@ -33,7 +33,6 @@ class PDFProcessor:
     def __init__(self, pdfname):
         # args = parser.parse_args()
         self.__pdfname = pdfname
-        pass
 
     def processPdf(self, pdfname):
         # parser = argparse.ArgumentParser(description="Enter document filename")
@@ -123,9 +122,10 @@ class PDFProcessor:
     def __addToElasticServer(self, chunks):
         es = ElasticServer()
         pdfName = str(self.__pdfname).lower()
-        print(es.createIndex(pdfName))
+        print("es.index : ", es.createIndex("esindex"))
         for chunk in chunks:
-            es.store_records(pdfName, chunk)
+            es.store_records("esindex", chunk)
+
 """
 This class ultimately provide a list of chunks from the pdf file by parsing it to text file using PDFToText and then ExtractChunks
 """
