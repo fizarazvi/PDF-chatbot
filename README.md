@@ -69,3 +69,10 @@ Merge from Ratan Singh
 
 ------------------------------------------------------------------------------------------------------------------------------------
 
+26th May Comments from Srinath
+
+ - With current code, we are able to get answers to questions. i have bypassed glove part, so answers are static. You can try     asking questions by using certain unique keywords. Eg. Jailbreaking ios, etc
+ - There are preprocessing issues:
+    . when you search for ihound, zips etc., response is the para present above the actual para
+    . some titles are not matched to their correct para. this is due to the pdf format
+    . i tried with the bishop pdf given by ratan, but for some reason its not getting updated in the db itself
