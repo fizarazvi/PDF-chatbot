@@ -119,8 +119,8 @@ class ElasticServer:
                 }
             })
             resp = self.__es.search(index=index_name, doc_type="Chunks", body=search_object)
-            print("Record:")
-            print(resp["hits"]["hits"][:3])
+            #print("Record:")
+            #print(resp["hits"]["hits"][:3])
 
         selected_titles = []
         for hit in resp["hits"]["hits"]:
