@@ -81,28 +81,19 @@ class ElasticServer:
         print(resp)
         print("Document created")
 
-    def store_records(self, index_name, chunk):
+    def store_records(self, index_name, chunks):
         # later records can be read from a file
-        rec1 = {
-            "Title": chunk[0],
-            "Text": chunk[1],
-            "Keywords": str(chunk[2])
-        }
-        try:
-            outcome = self.__es.index(index=index_name, doc_type='Chunks', body=rec1)
-        except Exception as ex:
-            print('Error in indexing data')
-            print(str(ex))
-        '''try:
-            outcome = self.__es.index(index=index_name, doc_type='Chunks', body=rec2)
-        except Exception as ex:
-            print('Error in indexing data')
-            print(str(ex))
-        try:
-            outcome = self.__es.index(index=index_name, doc_type='Chunks', body=rec3)
-        except Exception as ex:
-            print('Error in indexing data')
-            print(str(ex))'''
+        for chunk in chunks:
+            rec1 = {
+                "Title": chunk[0],
+                "Text": chunk[1],
+                "Keywords": str(chunk[2])
+            }
+            try:
+                outcome = self.__es.index(index=index_name, doc_type='Chunks', body=rec1)
+            except Exception as ex:
+                print('Error in indexing data')
+                print(str(ex))
         # self.__es.transport.close()
 
     def get_shard(self, index_name, query):
@@ -117,9 +108,19 @@ class ElasticServer:
                     }
                 }
             })
+            search_object = json.dumps({
+                "query": {
+                    "more_like_this" : {
+                        "fields": ["Title", "Text"],
+                        "like": query,
+                        "min_term_freq": 1,
+                        "max_query_terms": 12
+                    }
+                }
+            })
             resp = self.__es.search(index=index_name, doc_type="Chunks", body=search_object)
-        #print("Record:")
-        #print(resp["hits"]["hits"])
+            print("Record:")
+            print(resp["hits"]["hits"][:3])
 
         selected_titles = []
         for hit in resp["hits"]["hits"]:

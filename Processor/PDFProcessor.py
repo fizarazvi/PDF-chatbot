@@ -123,8 +123,7 @@ class PDFProcessor:
         es = ElasticServer()
         pdfName = str(self.__pdfname).lower()
         print("es.index : ", es.createIndex("esindex"))
-        for chunk in chunks:
-            es.store_records("esindex", chunk)
+        es.store_records("esindex", chunks)
 
 """
 This class ultimately provide a list of chunks from the pdf file by parsing it to text file using PDFToText and then ExtractChunks
