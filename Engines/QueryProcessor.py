@@ -14,7 +14,6 @@ from Engines.Engine import Engine
 from Factory.DatabaseFactory import DatabaseFactory
 from ConfigParser.ConfigParser import ConfigurationParser
 from Processor.PDFProcessor import PDFProcessor
-from Processor.QuesDataToElasticSearch import QuesDataToElasticSearch
 from Processor.WMD import WMD
 from ElasticServer import ElasticServer
 
