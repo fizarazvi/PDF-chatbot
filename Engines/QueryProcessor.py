@@ -16,6 +16,7 @@ from ConfigParser.ConfigParser import ConfigurationParser
 from Processor.PDFProcessor import PDFProcessor
 from Processor.QuesDataToElasticSearch import QuesDataToElasticSearch
 from Processor.WMD import WMD
+from ElasticServer import ElasticServer
 
 """
 Driver class for processing the query and data, delivering final answer to the UI
@@ -37,6 +38,12 @@ class QueryProcessor(Engine):
         self.__database = DatabaseFactory().getDatabase(self.__config.getEngineConfig("SmartPDFAssistant")['database'])
 
         # Will implement in later stages
+
+    def searchInElasticServer(self, query):
+        es = ElasticServer()
+        selected_titles = es.get_shard("esindex", query)
+        print("selected_titles : ", selected_titles)
+        return selected_titles
 
     def train(self, pdfname):
         print("\n pdfname : "+pdfname)
@@ -64,10 +71,13 @@ class QueryProcessor(Engine):
         print("query : ", query)
 
         # Creating objects
-        elasticSearch = QuesDataToElasticSearch()
         wmd = WMD()
+        qp = QueryProcessor()
 
-        selected_titles = elasticSearch.QuesDataToElasticSearch(query)
+        selected_titles = qp.searchInElasticServer(query)
+
+        if not selected_titles:
+            return "No results found!"
 
         #for i in selected_titles:
             #response.append(wmd.predict(query_ranked_phrase, selected_titles[i]))
@@ -76,6 +86,7 @@ class QueryProcessor(Engine):
         print("Titles\n", db_data['Title'])
         print("Text\n", db_data['Text'])
 
+        # Temporary code to bypass WMD Glove component
         i = 0
         length = len(db_data['Title'])
         while i < length:
@@ -86,7 +97,6 @@ class QueryProcessor(Engine):
         response = db_data['Text'][i]
         print("response : ", response)
 
-        #response = selected_titles[8]
 
         # Logging the response
         self.__logger.info("[{}] : Answer Sent : {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), response))
