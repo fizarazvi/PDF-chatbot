@@ -93,12 +93,19 @@ class PDFProcessor:
         for i in range(0, chunk_len):
             temp = chunks[i]
             if i != chunk_len - 1:
-                para = re.findall(
+                para = re.search(
                     re.escape(chunks[i][0]) + "[\w\s\W]+" + re.escape(chunks[i + 1][0]),
                     content[1], flags=re.IGNORECASE)
+                if para:
+                    para = "{}".format(para.group(0))
+                    paragraph = para.replace(chunks[i][0], '', 1)
+                    paragraph += para.replace(chunks[i + 1][0], '')
             else:
-                para = re.findall(re.escape(chunks[i][0]) + "[\w\s\W]+", content[1], flags=re.IGNORECASE)
-            temp.append(" ".join(para))
+                para = re.search(re.escape(chunks[i][0]) + "[\w\s\W]+", content[1], flags=re.IGNORECASE)
+                if para:
+                    para = "{}".format(para.group(0))
+                    paragraph = para.replace(chunks[i][0], '')
+            temp.append("".join(paragraph))
 
     def __generateKeywords(self, chunks):
         r = Rake()
@@ -106,11 +113,11 @@ class PDFProcessor:
             text = chunk[1]
             r.extract_keywords_from_text(text)
             chunk.append(r.get_ranked_phrases_with_scores())
-        '''for chunk in chunks:
-            print(chunk[0])
-            print(chunk[1])
-            print(chunk[2])
-            print("\n**\n")'''
+        # for chunk in chunks:
+        #     print(chunk[0])
+        #     print(chunk[1])
+        #     print(chunk[2])
+        #     print("\n**\n")
 
     def __addToDatabase(self, chunks):
         self.__config = ConfigurationParser()
