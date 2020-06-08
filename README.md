@@ -77,4 +77,8 @@ Merge from Ratan Singh
     - some titles are not matched to their correct para. this is due to the pdf format
     - i tried with the bishop pdf given by ratan, but for some reason its not getting updated in the db itself
 
-------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+Comments after Glove Merge - June 8th, 2020
+
+1. Glove part is added and working as per the expectations, @Srinath - You can include the WMD in your flow.
+@Shubham - Please add the script to download the glove Files in the ThirdPartyData Folder.
