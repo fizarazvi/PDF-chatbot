@@ -81,4 +81,4 @@ Merge from Ratan Singh
 Comments after Glove Merge - June 8th, 2020
 
 1. Glove part is added and working as per the expectations, @Srinath - You can include the WMD in your flow.
-@Shubham - Please add the script to download the glove Files in the ThirdPartyData Folder.
+@Shubham - Please add the script to download the glove Files in the ThirdPartyData Folder.(Done. Script is in scripts folder and will create the Third Party Data Folder and add the Glove files.)
