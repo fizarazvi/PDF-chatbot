@@ -8,7 +8,13 @@ Created on Fri Mar 13 19:35:04 2020
 import logging
 from datetime import datetime
 from rake_nltk import Rake
+import os
 from nltk.corpus import stopwords
+from word_mover_distance import model
+#import word_embedding.model as model
+#import gensim.downloader as api
+#from gensim.models import Word2Vec
+
 
 from Engines.Engine import Engine
 from Factory.DatabaseFactory import DatabaseFactory
@@ -49,6 +55,24 @@ class QueryProcessor(Engine):
         processed = PDFProcessor(pdfname)
         processed.processPdf(pdfname)
 
+    def merge(self, list1, list2):
+        merged_list = tuple(zip(list1, list2))
+        return merged_list
+
+    # Function to sort the list of tuples by its second item
+    def sort_tuple(self, tup):
+
+        # getting length of list of tuples
+        lst = len(tup)
+        for i in range(0, lst):
+
+            for j in range(0, lst - i - 1):
+                if (tup[j][1] > tup[j + 1][1]):
+                    temp = tup[j]
+                    tup[j] = tup[j + 1]
+                    tup[j + 1] = temp
+        return tup
+
     # Will take the query and return the output
     def predict(self, query):
 
@@ -74,39 +98,45 @@ class QueryProcessor(Engine):
         qp = QueryProcessor()
 
         selected_titles = qp.searchInElasticServer(query)
+        selected_titles_len = len(selected_titles)
+
 
         if not selected_titles:
             return "No results found!"
 
-        #for i in selected_titles:
-            #response.append(wmd.predict(query_ranked_phrase, selected_titles[i]))
+        #wmd.load()
+
+        response = []
+        wmdresponse = []
+
+        wmdmodel = model.WordEmbedding(model_fn="F://OFFICIAL//SMART PDF ASSISTANT//Smart-pdf-assistant//ThirdPartyData//glove.6B//glove.6B.50d.txt")
+        for i in range(selected_titles_len):
+            s1 = query.lower().split()
+            s2 = selected_titles[i].lower().split()
+            wmdresponse.append(wmdmodel.wmdistance(s1, s2))
+
+        #wmdresponse = wmd.getWMDResponse(query, selected_titles, selected_titles_len)
+
+        print("WMD response : ", wmdresponse)
+        response = self.merge(selected_titles, wmdresponse)
+        print("response : ", response)
+        self.sort_tuple(response)
 
         db_data = self.__database.getFrom("PDFAssistant", "ProcessedPDF", '')
-        print("Titles\n", db_data['Title'])
-        print("Text\n", db_data['Text'])
 
-        # Temporary code to bypass WMD Glove component
-        i = 0
-        length = len(db_data['Title'])
-        while i < length:
-            if selected_titles[7] == db_data['Title'][i]:
-                break
-            i += 1
-
-        response = db_data['Text'][i]
-        print("response : ", response)
-
+        finalresponse = db_data['Text'][i]
+        print("response : ", finalresponse)
 
         # Logging the response
-        self.__logger.info("[{}] : Answer Sent : {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), response))
+        self.__logger.info("[{}] : Answer Sent : {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), finalresponse))
         self.__logger.info("--" * 30)
 
         # Insertion into DB
         self.__database.insertInto("PDFAssistant", "QueryHistory",
                                    {'Date': datetime.now().strftime("%d/%m/%Y %H:%M:%S"), 'Query': query,
-                                    'Answer': response})
+                                    'Answer': finalresponse})
 
-        return response
+        return finalresponse
 
 
 """
