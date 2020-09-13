@@ -8,14 +8,7 @@ Created on Fri Mar 13 19:35:04 2020
 import logging
 from datetime import datetime
 from rake_nltk import Rake
-import os
-from nltk.corpus import stopwords
-from word_mover_distance import model
 from operator import itemgetter
-#import word_embedding.model as model
-#import gensim.downloader as api
-#from gensim.models import Word2Vec
-
 
 from Engines.Engine import Engine
 from Factory.DatabaseFactory import DatabaseFactory
@@ -31,9 +24,6 @@ Driver class for processing the query and data, delivering final answer to the U
 
 class QueryProcessor(Engine):
 
-    # Never instatiate a class with some object that will chnage again and again.
-    # Hence removing parameter query from here.
-
     def __init__(self):
         LOG_FILE = "logs/queryProcessor.log"
         self.__logger = logging.getLogger("queryProcessor")
@@ -43,12 +33,10 @@ class QueryProcessor(Engine):
         self.__config = ConfigurationParser()
         self.__database = DatabaseFactory().getDatabase(self.__config.getEngineConfig("SmartPDFAssistant")['database'])
 
-        # Will implement in later stages
 
     def searchInElasticServer(self, query):
         es = ElasticServer()
         selected_titles = es.get_shard("esindex", query)
-        print("selected_titles : ", selected_titles)
         return selected_titles
 
     def train(self, pdfname):
@@ -61,15 +49,10 @@ class QueryProcessor(Engine):
         return merged_list
 
     # Will take the query and return the output
-    def predict(self, query):
+    def predict(self, query, wmdmodel):
 
         # Logging the query
         self.__logger.info("[{}] : Received Query : {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), query))
-
-        """
-        Fill in your logic to procss the query here.
-        Curently this will return the same question as response from here.
-        """
 
         # Applying RAKE on query.
         r = Rake()
@@ -77,46 +60,37 @@ class QueryProcessor(Engine):
         query_ranked_phrase = r.get_ranked_phrases()
         query = ''.join(query_ranked_phrase)
 
-        print("query_ranked_phrase : ", query_ranked_phrase)
-        print("query : ", query)
-
         # Creating objects
         wmd = WMD()
         qp = QueryProcessor()
 
+        # Searching for titles matched with query in elastic server
         selected_titles = qp.searchInElasticServer(query)
         selected_titles_len = len(selected_titles)
 
         if not selected_titles:
             return "No results found!"
 
-        #wmd.load()
+        # Using WMD to get vector distance between query and each of the selected titles
+        wmdresponse = wmd.getWMDResponse(wmdmodel, query, selected_titles, selected_titles_len)
 
-        response = []
-        wmdresponse = []
-
-        wmdmodel = model.WordEmbedding(model_fn="F://OFFICIAL//SMART PDF ASSISTANT//Smart-pdf-assistant//ThirdPartyData//glove.6B//glove.6B.50d.txt")
-        for i in range(selected_titles_len):
-            s1 = query.lower().split()
-            s2 = selected_titles[i].lower().split()
-            wmdresponse.append(wmdmodel.wmdistance(s1, s2))
-
-        #wmdresponse = wmd.getWMDResponse(query, selected_titles, selected_titles_len)
-
-        print("WMD response : ", wmdresponse)
         response = self.merge(selected_titles, wmdresponse)
 
+        # Sorting response according to vector distance (ascending)
         response = sorted(response, key=itemgetter(1))
-        print("Sorted response : ", response)
 
+        # Retrieving preprocessed data from DB
         db_data = self.__database.getFrom("PDFAssistant", "ProcessedPDF", '')
 
+        # Selecting title having minimum vector distance with input query
         for i in range(len(db_data['Title'])):
             if response[0][0] == db_data['Title'][i]:
                 break;
 
         finalresponse = db_data['Text'][i]
-        print("response : ", finalresponse)
+
+        if not finalresponse:
+            return "No results found! Please refine your search"
 
         # Logging the response
         self.__logger.info("[{}] : Answer Sent : {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), finalresponse))

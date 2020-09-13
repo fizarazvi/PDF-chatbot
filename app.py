@@ -6,6 +6,7 @@ from flask import Flask,request, render_template, url_for, redirect, jsonify
 from Engines.QueryProcessor import QueryProcessor
 from ConfigParser.ConfigParser import ConfigurationParser
 from Factory.DatabaseFactory import DatabaseFactory
+from Processor.WMD import WMD
 
 app = Flask(__name__, static_url_path='',
             static_folder='templates',
@@ -13,8 +14,11 @@ app = Flask(__name__, static_url_path='',
 config = ConfigurationParser()
 db = DatabaseFactory().getDatabase(config.getEngineConfig("SmartPDFAssistant")['database'])
 portNumber = int(config.getServerConfig()['port'])
-
 queryProcessor = QueryProcessor()
+wmd = WMD()
+
+# Loading Glove vectors
+wmdmodel = wmd.load()
 
 LOG_FILE = "logs/server.log"
 logger = logging.getLogger("server")
@@ -50,7 +54,7 @@ def askQuestion():
     question = request.form['text']
     logger.info("[{}] : Received User Query :: {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), question))
 
-    answer = queryProcessor.predict(question)
+    answer = queryProcessor.predict(question, wmdmodel)
     
     logger.info("[{}] : Returned Answer :: {}".format(datetime.now().strftime("%d/%m/%Y %H:%M:%S"), answer))
 

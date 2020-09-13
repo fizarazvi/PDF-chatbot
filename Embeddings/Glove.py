@@ -6,6 +6,7 @@ Created on Mon Jun  8 16:08:05 2020
 """
 
 import numpy as np
+from word_mover_distance import model
 
 from Embeddings.Embeddings import Embeddings
 from Utilities.Singleton import Singleton
@@ -17,22 +18,19 @@ class Glove(Embeddings):
     
     def __init__(self):
         __metaclass__ = Singleton
-        self.__modelPath = "ThirdPartyData//glove.6B.50d.txt"
+        self.__modelPath = "F://OFFICIAL//SMART PDF ASSISTANT//Smart-pdf-assistant//ThirdPartyData//glove.6B//glove.6B.50d.txt"
         
         
     def load(self):
-        if self.glove == {}:
-            try:
-                with open(self.__modelPath, 'r', encoding = 'utf8') as f:
-                    for line in f:
-                        values = line.split()
-                        word = values[0]
-                        vector = np.array([float(value) for value in values[1:]])
-                        self.glove[word] = vector
-            except:
-                raise Exception("Exception occured in reading the glove data.")
-        else:
-            pass
+        try:
+            # Change Glove vector path to your specific local location
+            wmdmodel = model.WordEmbedding(model_fn="F://OFFICIAL//SMART PDF "
+                                                    "ASSISTANT//Smart-pdf-assistant//ThirdPartyData//glove.6B//glove.6B"
+                                                    ".50d.txt")
+        except:
+            raise Exception("Glove vectors not found, check local path")
+
+        return wmdmodel
     
     def __predict(self, data):
         try:
