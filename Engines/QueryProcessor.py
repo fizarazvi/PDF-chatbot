@@ -11,6 +11,7 @@ from rake_nltk import Rake
 import os
 from nltk.corpus import stopwords
 from word_mover_distance import model
+from operator import itemgetter
 #import word_embedding.model as model
 #import gensim.downloader as api
 #from gensim.models import Word2Vec
@@ -59,20 +60,6 @@ class QueryProcessor(Engine):
         merged_list = tuple(zip(list1, list2))
         return merged_list
 
-    # Function to sort the list of tuples by its second item
-    def sort_tuple(self, tup):
-
-        # getting length of list of tuples
-        lst = len(tup)
-        for i in range(0, lst):
-
-            for j in range(0, lst - i - 1):
-                if (tup[j][1] > tup[j + 1][1]):
-                    temp = tup[j]
-                    tup[j] = tup[j + 1]
-                    tup[j + 1] = temp
-        return tup
-
     # Will take the query and return the output
     def predict(self, query):
 
@@ -100,7 +87,6 @@ class QueryProcessor(Engine):
         selected_titles = qp.searchInElasticServer(query)
         selected_titles_len = len(selected_titles)
 
-
         if not selected_titles:
             return "No results found!"
 
@@ -119,10 +105,15 @@ class QueryProcessor(Engine):
 
         print("WMD response : ", wmdresponse)
         response = self.merge(selected_titles, wmdresponse)
-        print("response : ", response)
-        self.sort_tuple(response)
+
+        sorted(response, key=itemgetter(1))
+        print("Sorted response : ", response)
 
         db_data = self.__database.getFrom("PDFAssistant", "ProcessedPDF", '')
+
+        for i in range(len(db_data['Title'])):
+            if response[0][0] == db_data['Title'][i]:
+                break;
 
         finalresponse = db_data['Text'][i]
         print("response : ", finalresponse)
