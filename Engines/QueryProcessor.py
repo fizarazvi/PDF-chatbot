@@ -106,7 +106,7 @@ class QueryProcessor(Engine):
         print("WMD response : ", wmdresponse)
         response = self.merge(selected_titles, wmdresponse)
 
-        sorted(response, key=itemgetter(1))
+        response = sorted(response, key=itemgetter(1))
         print("Sorted response : ", response)
 
         db_data = self.__database.getFrom("PDFAssistant", "ProcessedPDF", '')
